@@ -12,7 +12,11 @@
             <asminc-extensions/>
             <sourceEncoding>ISO-8859-1</sourceEncoding>
             <make-dep-projects/>
-            <sourceRootList/>
+            <sourceRootList>
+                <sourceRootElem>.</sourceRootElem>
+                <sourceRootElem>C:/Users/spong/Documents/I2Cdev</sourceRootElem>
+                <sourceRootElem>C:/Users/spong/Documents/MPU6050</sourceRootElem>
+            </sourceRootList>
             <confList>
                 <confElem>
                     <name>default</name>

@@ -1,24 +1,10 @@
-/****** ASEN 4/5067 Project ******************************************************
- * Author: Jason Le
- * Date  : 12/12/21
+/*
+ * File:   Servo.c
+ * Author: spong
  *
- * Description
- * "Blinky"
- * The following occurs forever:
- *      RD4 blinks: 60HZ 50% duty cycle
- *
- *******************************************************************************
- *
- * Program hierarchy 
- *
- * Mainline
- *   Initial
- *
- * HiPriISR (included just to show structure)
- *
- * LoPriISR
- *   TMR0handler
- ******************************************************************************/
+ * Created on December 9, 2021, 9:10 PM
+ */
+
 
 #include <xc.h>
 #include <string.h>
@@ -29,117 +15,340 @@
 #pragma config FOSC=HS1, PWRTEN=ON, BOREN=ON, BORV=2, PLLCFG=OFF
 #pragma config WDTEN=OFF, CCP2MX=PORTC, XINST=OFF
 #define DEBUG 1
-#define MIN_PULSE_WIDTH       544     // the shortest pulse sent to a servo  
-#define MAX_PULSE_WIDTH      2400     // the longest pulse sent to a servo 
+#define MIN_PULSE_WIDTH       544     // the shortest pulse sent to a servo  (FROM ARDUINO LIB)
+#define MAX_PULSE_WIDTH      2400     // the longest pulse sent to a servo   (FROM ARDUINO LIB)
 #define I2C_BaudRate 100000
-#define SCL TRISCbits.TRISC3
-#define SDA TRISCbits.TRISC4
-/******************************************************************************
- * Global variables
- ******************************************************************************/
-unsigned char Status_temp = 0x00;
-unsigned char Wreg_temp = 0x00;
-unsigned char BSR_temp = 0x00;
-unsigned int angle = 0;
 
-/******************************************************************************
- * Function prototypes
- ******************************************************************************/
-void Initial(void);
-void InitialPorts(void);
-void InitialPrio(void);
+unsigned char TMR1X = 0; //Extension Byte for TMR1
+unsigned char CCPR1X = 0; //Extension Byte for CCP1
+unsigned char TMR3X = 0; //Extension Byte for TMR3
+unsigned char CCPR4X = 0; //Extension Byte for CCP4
+unsigned char Status_temp = 0x00; //Status
+unsigned char Wreg_temp = 0x00; //WREG
+unsigned char BSR_temp = 0x00; //BSR
+unsigned long Servo1_on = 4000; //Initialize PWM ON for Servo1
+unsigned long Servo1_off = 76000; //Initialize PWM OFF for Servo1
+unsigned long Servo2_on = 4000; //Initialize PWM ON for Servo2
+unsigned long Servo2_off = 76000; //Initialize PWM OFF for Servo2
+unsigned long time0counter = 0;
+float CurrentTime = 0;
+float previousTime = 0;
+float GyroAngleX = 0;
+float GyroAngleY = 0;
+float yaw = 0;
 
-void I2C_Master_Init(void);
+void Initial(void); //Initialize Function
+
+void CCP1handler(void); //CCP1 Function
+void CCP4handler(void); //CCP4 Function
+void TMR1handler(void); //TMR1 Function
+void TMR3handler(void); //TMR3 Function
+void Servo1(unsigned int angle); //Servo1 Write
+void Servo2(unsigned int angle); //Servo2 Write
+
 void I2C_Master_Wait(void);
 void I2C_Master_Start(void);
 void I2C_Start(char add);
 void I2C_Master_RepeatedStart(void);
-void I2C_Master_Stop();
+void I2C_Master_Stop(void);
 void I2C_ACK(void);
 void I2C_NACK(void);
 unsigned char I2C_Master_Write(unsigned char data);
 unsigned char I2C_Read_Byte(void);
 unsigned char I2C_Read(unsigned char ACK_NACK);
-void InitialIMU(void);
-void IMURead(void);
 
-void usartIntial(void);
-unsigned int I2C_Write_Byte(unsigned char Byte);
-unsigned char I2C_Read_Byte(void);
-void Servo(unsigned int value);
-void TMR0Config(unsigned int angle);
-unsigned int map(unsigned int value,unsigned int valuemin,unsigned int valuemax,unsigned int newmin,unsigned int newmax);
+void MPU6050_Read(void);
+void TMR0handler(void);
 
-/******************************************************************************
- * main()
- ******************************************************************************/
+void UART_TX_Init(void);
+void UART_Write(unsigned char data);
+void UART_Write_String(char* buf);
+
+
+
+unsigned int map(unsigned int value,unsigned int valuemin,unsigned int valuemax,unsigned int newmin,unsigned int newmax); //map function(ARDUINO)
 void main(void) {
     Initial();
-    InitialIMU();
+    Servo1(45);
+    Servo2(45);
     while(1){
-        angle = 0;
-        __delay_ms(1000);
-        angle = 1;
-        __delay_ms(1000);
-        IMURead();
+        for( int i = 180;i >= 0;i --){
+//            Servo1(i);
+//            Servo2(i);
+            MPU6050_Read();
+            __delay_ms(50);
+        }
+        //MPU6050_Read();  
     }
     return;
 }
+
 void Initial(void){
-    InitialPorts();
-    InitialPrio();
-}
-
-void IMURead(void){
-    int Az;
-    I2C_Start(0x28);
-    I2C_Master_Write(0x0D);
-    Az = (int)I2C_Read(0);
-    
-}
-
-void InitialPorts(void){
+    //PORT CONFIGURE
+    TRISC = 0x00;
+    LATC = 0x00;
     TRISD = 0x00;
     LATD = 0x00;
     TRISE = 0x00;
     LATE = 0x00;
-}
-
-void InitialPrio(void){
+    
+    //INTURRUPT CONFIGURE
     RCONbits.IPEN = 1;
     INTCONbits.GIEL = 1;
     INTCONbits.GIEH = 1;
     
-    // Timer0 Initializing
-    INTCON2bits.TMR0IP = 0; // Assign low priority to TMR0 interrupt
-    INTCONbits.TMR0IE = 1; // Enable TMR0 interrupts
-    T0CON = 0b00001000;
-    TMR0H = 0xF0;
-    TMR0L = 0x60;
-    T0CONbits.TMR0ON = 1;
-}
-
-void InitialIMU(void){
-    __delay_ms(100);
-    I2C_Master_Init();
-    I2C_Start(0x28);
-    I2C_Master_Write(0x12);
-    I2C_Master_Write(0x03);
-    I2C_Master_Stop();
+    //TIMER1&CCP1 CONFIGURE
+    T1CON = 0b00000010;
+    CCP1CON = 0b00001000;
+    CCPTMRS0 = 0x00;
+    IPR1bits.TMR1IP = 0;
+    IPR3bits.CCP1IP = 0;
+    PIE3bits.CCP1IE = 1;
+    PIE1bits.TMR1IE = 1;
+    CCPR1X = (Servo1_on & 0xFF0000)/65536;
     
-}
-
-void I2C_Master_Init(void){
+    //TIMER3&CCP4 CONFIGURE
+    T3CON = 0b00000010;
+    CCP4CON = 0b00001000;
+    CCPTMRS1 = 0b00000001;
+    IPR2bits.TMR3IP = 0;
+    IPR4bits.CCP4IP = 0;
+    PIE4bits.CCP4IE = 1;
+    PIE2bits.TMR3IE = 1;
+    CCPR4X = (Servo2_on & 0xFF0000)/65536;
+    
+    //TIMER0 CONFIGURE
+//    T0CON = 0b01001000;
+//    INTCON2bits.TMR0IP = 1;
+//    INTCONbits.TMR0IE = 1;
+    
+    //I2C CONFIGURE
     SSP1CON1 = 0x28;
     SSP1CON2 = 0x00;
     SSP1STAT = 0x00;
     SSP1ADD = ((_XTAL_FREQ/4)/I2C_BaudRate) - 1;
-    SCL = 1;
-    SDA = 1;
+    TRISCbits.TRISC3 = 1; //SCL
+    TRISCbits.TRISC4 = 1; //SDA
+    
+    //MPU6050 CONFIGURE
+    __delay_ms(100);
+    
+    //Sample Rate
+    I2C_Start(0xD0);
+    I2C_Master_Write(0x19);
+    I2C_Master_Write(0x07);
+    I2C_Master_Stop();
+    
+    //Clock Source
+    I2C_Start(0xD0);
+    I2C_Master_Write(0x6B);
+    I2C_Master_Write(0x01);
+    I2C_Master_Stop();
+    
+    //DLPF
+    I2C_Start(0xD0);
+    I2C_Master_Write(0x1A);
+    I2C_Master_Write(0x00);
+    I2C_Master_Stop();
+    
+    //ACCEL
+    I2C_Start(0xD0);
+    I2C_Master_Write(0x1C);
+    I2C_Master_Write(0x00);
+    I2C_Master_Stop();
+    
+    //GYRO
+    I2C_Start(0xD0);
+    I2C_Master_Write(0x1B);
+    I2C_Master_Write(0x18);
+    I2C_Master_Stop();
+    
+    //Interrupt
+    I2C_Start(0xD0);
+    I2C_Master_Write(0x56);
+    I2C_Master_Write(0x01);
+    I2C_Master_Stop();
+    
+    //USART CONFIGURE
+    TRISCbits.TRISC7 = 1;
+    TRISCbits.TRISC6 = 0;
+    BAUDCON1bits.BRG16 = 0;
+    BAUDCON1bits.RCIDL = 1;
+    SPBRG1 = 12;
+    SPBRGH1 = 0x00;
+    TXSTA1bits.BRGH = 0;
+    TXSTA1bits.TX9 = 0;
+    TXSTA1bits.TXEN = 1;
+    RCSTA1bits.SPEN = 1;
+    RCSTA1bits.CREN = 1;
+    IPR1bits.RC1IP = 0;
+    PIE1bits.RC1IE = 1;
+    
+    //START TIMERS
+    T0CONbits.TMR0ON = 1;
+    T1CONbits.TMR1ON = 1;
+    T3CONbits.TMR3ON = 1;
+    
+}
+
+void __interrupt() HiPriISR (void){
+    while(1){
+//            if(INTCONbits.TMR0IF){
+//               TMR0handler();
+//               continue;
+//            }
+    break;
+    }
+    return;
+}
+void __interrupt(low_priority) LoPriISR (void){
+    Status_temp = STATUS;
+    Wreg_temp = WREG;
+    BSR_temp = BSR;
+    while(1){
+        if(PIR3bits.CCP1IF){
+            CCP1handler();
+            continue;
+        }
+        if(PIR4bits.CCP4IF){
+            CCP4handler();
+            continue;
+        }
+        if(PIR1bits.TMR1IF){
+            TMR1handler();
+            continue;
+        }
+        
+        if(PIR2bits.TMR3IF){
+            TMR3handler();
+            continue;
+        }
+
+        break;
+    }
+    STATUS = Status_temp;
+    WREG = Wreg_temp;
+    BSR = BSR_temp;
+}
+void CCP1handler(void){
+    unsigned long CCPRT;
+    if(PIR1bits.TMR1IF){
+        if(CCPR1H < 0b10000000){
+            TMR1X++;
+            time0counter++;
+            PIR1bits.TMR1IF = 0;
+        }
+    }
+    if(CCPR1X != TMR1X){
+        PIR3bits.CCP1IF = 0;
+        return;
+    }
+    LATDbits.LATD1 = !LATDbits.LATD1;
+    if(LATDbits.LATD1 == 1){
+        CCPRT = ((unsigned long)CCPR1X*65536) + ((unsigned long)CCPR1H*256) + (unsigned long)CCPR1L;
+        CCPRT += Servo1_on;
+        CCPR1L = (CCPRT & 0x0000FF);
+        CCPR1H = (CCPRT & 0x00FF00)/256;
+        CCPR1X = (CCPRT & 0xFF0000)/65536;
+    }
+    if(LATDbits.LATD1 == 0){
+      CCPRT = ((unsigned long)CCPR1X*65536) + ((unsigned long)CCPR1H*256) + (unsigned long)CCPR1L;
+        CCPRT += Servo1_off;
+        CCPR1L = CCPRT & 0x0000FF;
+        CCPR1H = (CCPRT & 0x00FF00)/256;
+        CCPR1X = (CCPRT & 0xFF0000)/65536;
+    }
+    PIR3bits.CCP1IF = 0;
+    return;
+}
+void CCP4handler(void){
+    unsigned long CCPRT;
+    if(PIR2bits.TMR3IF){
+        if(CCPR4H < 0b10000000){
+            TMR3X++;
+            PIR2bits.TMR3IF = 0;
+        }
+    }
+    if(CCPR4X != TMR3X){
+        PIR4bits.CCP4IF = 0;
+        return;
+    }
+    LATEbits.LATE1 = !LATEbits.LATE1;
+    if(LATEbits.LATE1 == 1){
+        CCPRT = ((unsigned long)CCPR4X*65536) + ((unsigned long)CCPR4H*256) + (unsigned long)CCPR4L;
+        CCPRT += Servo2_on;
+        CCPR4L = (CCPRT & 0x0000FF);
+        CCPR4H = (CCPRT & 0x00FF00)/256;
+        CCPR4X = (CCPRT & 0xFF0000)/65536;
+    }
+    if(LATEbits.LATE1 == 0){
+        CCPRT = ((unsigned long)CCPR4X*65536) + ((unsigned long)CCPR4H*256) + (unsigned long)CCPR4L;
+        CCPRT += Servo2_off;
+        CCPR4L = (CCPRT & 0x0000FF);
+        CCPR4H = (CCPRT & 0x00FF00)/256;
+        CCPR4X = (CCPRT & 0xFF0000)/65536;
+    }
+    PIR4bits.CCP4IF = 0;
+    return;
+}
+void TMR1handler(void){
+    TMR1X++;
+    time0counter++;
+    PIR1bits.TMR1IF = 0;
+    return;
+}
+void TMR3handler(void){
+    TMR3X++;
+    PIR2bits.TMR3IF = 0;
+    return;
+}
+void TMR0handler(void){
+    time0counter++;
+    CurrentTime = time0counter*0.064;
+    INTCONbits.TMR0IF = 0;
+    return;
+}
+
+unsigned int map(unsigned int value,unsigned int valuemin,unsigned int valuemax,unsigned int newmin,unsigned int newmax){
+    unsigned int first = (value - valuemin);
+    unsigned long second = (unsigned long)first*((unsigned long)newmax - (unsigned long)newmin);
+    unsigned int third = second/(valuemax - valuemin);
+    return third + newmin;
+   
+}
+void Servo1(unsigned int angle){
+    unsigned int temp;
+    if(angle < 0){
+        angle = -1*angle;
+    }
+    if(angle > 180){
+        angle = 180;
+    }
+    if(angle < 0){
+        angle = 0;
+    }
+    temp = Servo1_on;
+    Servo1_on = map(angle,0,180,2000,9600);//10000 seems to be max 2000 seems to be the min
+    Servo1_off -= Servo1_on - temp;
+}
+void Servo2(unsigned int angle){
+    unsigned int temp;
+    if(angle < 0){
+        angle = -1*angle;
+    }
+    if(angle > 180){
+        angle = 180;
+    }
+    if(angle < 0){
+        angle = 0;
+    }
+    temp = Servo2_on;
+    Servo2_on = map(angle,0,180,2000,9600);//10000 seems to be max 2000 seems to be the min
+    Servo2_off -= Servo2_on - temp;
 }
 
 void I2C_Master_Wait(void){
-    while((SSP1STAT & 0x04)||(SSP1CON2 & 0x1F)){
+    while((SSP1STAT & 0x04) || (SSP1CON2 & 0x1F)){
     }
 }
 
@@ -154,44 +363,45 @@ void I2C_Start(char add){
     I2C_Master_Write(add);
 }
 
-void I2C_Master_RepeatedStart(){
+void I2C_Master_RepeatedStart(void){
     I2C_Master_Wait();
     SSP1CON2bits.RSEN = 1;
 }
 
-void I2C_Master_Stop(){
+void I2C_Master_Stop(void){
     I2C_Master_Wait();
     SSP1CON2bits.PEN = 1;
 }
+
 void I2C_ACK(void){
     SSP1CON2bits.ACKDT = 0;
     SSP1CON2bits.ACKEN = 1;
-    while(SSP1CON2bits.ACKEN){
+    while(SSP1CON2bits.ACKEN == 1){
     }
 }
 
 void I2C_NACK(void){
     SSP1CON2bits.ACKDT = 1;
     SSP1CON2bits.ACKEN = 1;
-    while(SSP1CON2bits.ACKEN){
+    while(SSP1CON2bits.ACKEN == 1){
     }
 }
 
 unsigned char I2C_Master_Write(unsigned char data){
     I2C_Master_Wait();
     SSP1BUF = data;
-    while(!SSP1IF){
+    while(!PIR1bits.SSP1IF){
     }
-    SSP1IF = 0;
+    PIR1bits.SSP1IF = 0;
     return SSP1CON2bits.ACKSTAT;
 }
 
 unsigned char I2C_Read_Byte(void){
     I2C_Master_Wait();
     SSP1CON2bits.RCEN = 1;
-    while(!SSP1IF){
+    while(!PIR1bits.SSP1IF){
     }
-    SSP1IF = 0;
+    PIR1bits.SSP1IF = 0;
     I2C_Master_Wait();
     return SSP1BUF;
 }
@@ -208,88 +418,104 @@ unsigned char I2C_Read(unsigned char ACK_NACK){
     else{
         I2C_NACK();
     }
-    while(!SSP1IF){
+    while(!PIR1bits.SSP1IF){
     }
-    SSP1IF = 0;
+    PIR1bits.SSP1IF = 0;
     return Data;
 }
 
-void usartIntial(void){
-// Purpose: Intialize the USART communcation and interrupt
-    TRISCbits.TRISC7 = 1;
-    TRISCbits.TRISC6 = 0;
-    BAUDCON1bits.BRG16 = 0;
-    BAUDCON1bits.RCIDL = 1;
-    SPBRG1 = 12;
-    SPBRGH1 = 0x00;
-    TXSTA1bits.BRGH = 0;
-    TXSTA1bits.TX9 = 0;
-    TXSTA1bits.TXEN = 1;
-    RCSTA1bits.SPEN = 1;
-    RCSTA1bits.CREN = 1;
+void MPU6050_Read(void){
+    char buffer[40];
+    int Ax,Ay,Az,Gx,Gy,Gz,T;
+    float accAngleX, accAngleY;
+    float AX,AY,AZ,GX,GY,GZ,t, roll, pitch;
+    CurrentTime = ((time0counter*0.016384)+(((double)TMR1H*256) + (double)TMR1L)*0.000000250)*1000;
+    float elapsedTime = (CurrentTime - previousTime) / 1000;
+    previousTime = CurrentTime;
+    I2C_Start(0xD0);
+    I2C_Master_Write(0x3B);
+    I2C_Master_Stop();
+    I2C_Start(0xD1);
+    I2C_Read(0);
+    Ax = ((int)I2C_Read(0)<<8) | (int)I2C_Read(0);
+    Ay = ((int)I2C_Read(0)<<8) | (int)I2C_Read(0);
+    Az = ((int)I2C_Read(0)<<8) | (int)I2C_Read(0);
+    T  = ((int)I2C_Read(0)<<8) | (int)I2C_Read(0);
+    Gx = ((int)I2C_Read(0)<<8) | (int)I2C_Read(0);
+    Gy = ((int)I2C_Read(0)<<8) | (int)I2C_Read(0);
+    Gz = ((int)I2C_Read(0)<<8) | (int)I2C_Read(1);
+    I2C_Master_Stop();
     
-    IPR1bits.RC1IP = 0;
-    PIE1bits.RC1IE = 1;
-}
-
-void TMR0Config(unsigned int angle){
-    unsigned int temp = 0;
-    if(LATDbits.LATD1 == 0){
-        T0CON = 0b00001000;
-        TMR0H = 0xF0 - angle*0x0F;
-        TMR0L = 0x60 - angle*0xA0;
-        //TMR0 = 61536 - (angle*4000);
-        temp = 1;
-        LATDbits.LATD1 = 1;
-        T0CONbits.TMR0ON = 1;
-    }
-    if((LATDbits.LATD1 == 1)&&(temp == 0)){
-        T0CON = 0b00000000;
-        TMR0H = 0x6B + angle*0x0F;
-        TMR0L = 0x90 + angle*0xA0;
-//        TMR0 = 27536 + (angle*4000);
-        LATDbits.LATD1 = 0;
-        T0CONbits.TMR0ON = 1;
-    }
+    AX = (float)Ax/16384.0;
+    AY = (float)Ay/16384.0;
+    AZ = (float)Az/16384.0;
+    GX = (float)Gx/131.0;
+    GY = (float)Gy/131.0;
+    GZ = (float)Gz/131.0;
+    t = ((float)T/340.00)+36.53;
+    
+    // Print The Results
+//    sprintf(buffer,"Ax = %.2f \t",AX);	
+//    UART_Write_String(buffer);
+//   
+//    sprintf(buffer," Ay = %.2f \t",AY);
+//    UART_Write_String(buffer);
+//		
+//    sprintf(buffer," Az = %.2f \t",AZ);
+//    UART_Write_String(buffer);
+//
+//    sprintf(buffer," T = %.2f  ",t);
+//    UART_Write_String(buffer);
+//
+//    sprintf(buffer," Gx = %.2f \t",GX);
+//    UART_Write_String(buffer);
+//
+//    sprintf(buffer," Gy = %.2f \t",GY);
+//    UART_Write_String(buffer);
+//   
+//    sprintf(buffer," Gz = %.2f\r\n",GZ);
+//    UART_Write_String(buffer);
+    
+      //accAngleX = (atan(AX / sqrt(pow(AX, 2) + pow(AZ, 2))) * 180 / 3.14159265359);
+      accAngleX=(-atan2(AX/9.8,-AY/9.8)/2/3.141592654*360)+1.9;
+//    //accAngleY = (atan(-1 * AX / sqrt(pow(AY, 2) + pow(AZ, 2))) * 180 / 3.14159265359);
+     accAngleY = (-atan2(-AZ/9.8,-AY/9.8)/2/3.141592654*360)-1.9;
+    GyroAngleX = GX*elapsedTime;
+    GyroAngleY = -GZ*elapsedTime;
+//    yaw += GZ*elapsedTime;
+    roll = 0.96*(GyroAngleX + accAngleX) + 0.04*accAngleX;
+    pitch = 0.96*(GyroAngleY+ accAngleY) + 0.04*accAngleY;
+//    
+    sprintf(buffer," roll = %.2f \t",roll);
+    UART_Write_String(buffer);
+    sprintf(buffer," pitch = %.2f \t",pitch);
+    UART_Write_String(buffer);
+    sprintf(buffer," elapsedTime = %.2f \t",AX);
+    UART_Write_String(buffer);
+    sprintf(buffer," GyroAngleX = %.2f \t",GyroAngleX);
+    UART_Write_String(buffer);
+    sprintf(buffer," GyroAngleY = %.2f \t",GyroAngleY);
+    UART_Write_String(buffer);
+    sprintf(buffer," accAngleX = %.2f \t",accAngleX);
+    UART_Write_String(buffer);
+    sprintf(buffer," accAngleY = %.2f \r\n",accAngleY);
+    UART_Write_String(buffer);
+    
+    Servo1(90.0-roll);
+    Servo2(90.0-pitch);
+    
     return;
 }
 
-void __interrupt() HiPriISR (void)
-{
-   // ISR code would go here 
-} // Supports retfie FAST automatically
-void __interrupt(low_priority) LoPriISR (void)
-{
-    Status_temp = STATUS;  // Keep the STATUS, WREG, and BSR registers after interrupt
-    Wreg_temp = WREG;
-    BSR_temp = BSR;
-    while(1) {
-        if(INTCONbits.TMR0IF){
-            TMR0Config(angle);
-            INTCONbits.TMR0IF = 0;
-            continue;
+void UART_Write(unsigned char data){
+    while(PIR1bits.TX1IF == 0){
         }
-        break;
-    }
-    STATUS = Status_temp;  // Return the STATUS, WREG, and BSR registers after interrupt
-    WREG = Wreg_temp;
-    BSR = BSR_temp;
-}    
-
-void Servo(unsigned int value){
-    if(value < 0)
-        value = 0;
-    if(value > 180)
-        value = 180;
-    value = map(value,0,180,MIN_PULSE_WIDTH,MAX_PULSE_WIDTH);
-    if(value < MIN_PULSE_WIDTH)
-        value = MIN_PULSE_WIDTH;
-    else if(value > MIN_PULSE_WIDTH)
-        value = MAX_PULSE_WIDTH;
-    
+    TXREG1 = data;
 }
 
-
-unsigned int map(unsigned int value,unsigned int valuemin,unsigned int valuemax,unsigned int newmin,unsigned int newmax){
-    return ((((value - valuemin)*(newmax - newmin))/(valuemax - valuemin)) + newmin);
+void UART_Write_String(char* buf){
+    int i = 0;
+    while(buf[i] != '\0')
+        UART_Write(buf[i++]);
 }
+

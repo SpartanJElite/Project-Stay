@@ -7,7 +7,14 @@
 # 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "Le_Jason_Project.c" 2
-# 23 "Le_Jason_Project.c"
+
+
+
+
+
+
+
+
 # 1 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -11065,7 +11072,7 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 33 "C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\\pic\\include\\xc.h" 2 3
-# 23 "Le_Jason_Project.c" 2
+# 9 "Le_Jason_Project.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\string.h" 1 3
 # 25 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\string.h" 3
@@ -11122,7 +11129,7 @@ size_t strxfrm_l (char *restrict, const char *restrict, size_t, locale_t);
 
 
 void *memccpy (void *restrict, const void *restrict, int, size_t);
-# 24 "Le_Jason_Project.c" 2
+# 10 "Le_Jason_Project.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdio.h" 1 3
 # 24 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\stdio.h" 3
@@ -11262,7 +11269,7 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 25 "Le_Jason_Project.c" 2
+# 11 "Le_Jason_Project.c" 2
 
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.32\\pic\\include\\c99\\math.h" 1 3
@@ -11728,115 +11735,346 @@ double jn(int, double);
 double y0(double);
 double y1(double);
 double yn(int, double);
-# 27 "Le_Jason_Project.c" 2
+# 13 "Le_Jason_Project.c" 2
 
 
 #pragma config FOSC=HS1, PWRTEN=ON, BOREN=ON, BORV=2, PLLCFG=OFF
 #pragma config WDTEN=OFF, CCP2MX=PORTC, XINST=OFF
-# 40 "Le_Jason_Project.c"
+
+
+
+
+
+unsigned char TMR1X = 0;
+unsigned char CCPR1X = 0;
+unsigned char TMR3X = 0;
+unsigned char CCPR4X = 0;
 unsigned char Status_temp = 0x00;
 unsigned char Wreg_temp = 0x00;
 unsigned char BSR_temp = 0x00;
-unsigned int angle = 0;
-
-
-
+unsigned long Servo1_on = 4000;
+unsigned long Servo1_off = 76000;
+unsigned long Servo2_on = 4000;
+unsigned long Servo2_off = 76000;
+unsigned long time0counter = 0;
+float CurrentTime = 0;
+float previousTime = 0;
+float GyroAngleX = 0;
+float GyroAngleY = 0;
+float yaw = 0;
 
 void Initial(void);
-void InitialPorts(void);
-void InitialPrio(void);
 
-void I2C_Master_Init(void);
+void CCP1handler(void);
+void CCP4handler(void);
+void TMR1handler(void);
+void TMR3handler(void);
+void Servo1(unsigned int angle);
+void Servo2(unsigned int angle);
+
 void I2C_Master_Wait(void);
 void I2C_Master_Start(void);
 void I2C_Start(char add);
 void I2C_Master_RepeatedStart(void);
-void I2C_Master_Stop();
+void I2C_Master_Stop(void);
 void I2C_ACK(void);
 void I2C_NACK(void);
 unsigned char I2C_Master_Write(unsigned char data);
 unsigned char I2C_Read_Byte(void);
 unsigned char I2C_Read(unsigned char ACK_NACK);
-void InitialIMU(void);
-void IMURead(void);
 
-void usartIntial(void);
-unsigned int I2C_Write_Byte(unsigned char Byte);
-unsigned char I2C_Read_Byte(void);
-void Servo(unsigned int value);
-void TMR0Config(unsigned int angle);
+void MPU6050_Read(void);
+void TMR0handler(void);
+
+void UART_TX_Init(void);
+void UART_Write(unsigned char data);
+void UART_Write_String(char* buf);
+
+
+
 unsigned int map(unsigned int value,unsigned int valuemin,unsigned int valuemax,unsigned int newmin,unsigned int newmax);
-
-
-
-
 void main(void) {
     Initial();
-    InitialIMU();
+    Servo1(45);
+    Servo2(45);
     while(1){
-        angle = 0;
-        _delay((unsigned long)((1000)*(16000000/4000.0)));
-        angle = 1;
-        _delay((unsigned long)((1000)*(16000000/4000.0)));
-        IMURead();
+        for( int i = 180;i >= 0;i --){
+
+
+            MPU6050_Read();
+            _delay((unsigned long)((50)*(16000000/4000.0)));
+        }
+
     }
     return;
 }
+
 void Initial(void){
-    InitialPorts();
-    InitialPrio();
-}
 
-void IMURead(void){
-    int Az;
-    I2C_Start(0x28);
-    I2C_Master_Write(0x0D);
-    Az = (int)I2C_Read(0);
-
-}
-
-void InitialPorts(void){
+    TRISC = 0x00;
+    LATC = 0x00;
     TRISD = 0x00;
     LATD = 0x00;
     TRISE = 0x00;
     LATE = 0x00;
-}
 
-void InitialPrio(void){
+
     RCONbits.IPEN = 1;
     INTCONbits.GIEL = 1;
     INTCONbits.GIEH = 1;
 
 
-    INTCON2bits.TMR0IP = 0;
-    INTCONbits.TMR0IE = 1;
-    T0CON = 0b00001000;
-    TMR0H = 0xF0;
-    TMR0L = 0x60;
-    T0CONbits.TMR0ON = 1;
-}
+    T1CON = 0b00000010;
+    CCP1CON = 0b00001000;
+    CCPTMRS0 = 0x00;
+    IPR1bits.TMR1IP = 0;
+    IPR3bits.CCP1IP = 0;
+    PIE3bits.CCP1IE = 1;
+    PIE1bits.TMR1IE = 1;
+    CCPR1X = (Servo1_on & 0xFF0000)/65536;
 
-void InitialIMU(void){
-    _delay((unsigned long)((100)*(16000000/4000.0)));
-    I2C_Master_Init();
-    I2C_Start(0x28);
-    I2C_Master_Write(0x12);
-    I2C_Master_Write(0x03);
-    I2C_Master_Stop();
 
-}
+    T3CON = 0b00000010;
+    CCP4CON = 0b00001000;
+    CCPTMRS1 = 0b00000001;
+    IPR2bits.TMR3IP = 0;
+    IPR4bits.CCP4IP = 0;
+    PIE4bits.CCP4IE = 1;
+    PIE2bits.TMR3IE = 1;
+    CCPR4X = (Servo2_on & 0xFF0000)/65536;
 
-void I2C_Master_Init(void){
+
+
+
+
+
+
     SSP1CON1 = 0x28;
     SSP1CON2 = 0x00;
     SSP1STAT = 0x00;
     SSP1ADD = ((16000000/4)/100000) - 1;
     TRISCbits.TRISC3 = 1;
     TRISCbits.TRISC4 = 1;
+
+
+    _delay((unsigned long)((100)*(16000000/4000.0)));
+
+
+    I2C_Start(0xD0);
+    I2C_Master_Write(0x19);
+    I2C_Master_Write(0x07);
+    I2C_Master_Stop();
+
+
+    I2C_Start(0xD0);
+    I2C_Master_Write(0x6B);
+    I2C_Master_Write(0x01);
+    I2C_Master_Stop();
+
+
+    I2C_Start(0xD0);
+    I2C_Master_Write(0x1A);
+    I2C_Master_Write(0x00);
+    I2C_Master_Stop();
+
+
+    I2C_Start(0xD0);
+    I2C_Master_Write(0x1C);
+    I2C_Master_Write(0x00);
+    I2C_Master_Stop();
+
+
+    I2C_Start(0xD0);
+    I2C_Master_Write(0x1B);
+    I2C_Master_Write(0x18);
+    I2C_Master_Stop();
+
+
+    I2C_Start(0xD0);
+    I2C_Master_Write(0x56);
+    I2C_Master_Write(0x01);
+    I2C_Master_Stop();
+
+
+    TRISCbits.TRISC7 = 1;
+    TRISCbits.TRISC6 = 0;
+    BAUDCON1bits.BRG16 = 0;
+    BAUDCON1bits.RCIDL = 1;
+    SPBRG1 = 12;
+    SPBRGH1 = 0x00;
+    TXSTA1bits.BRGH = 0;
+    TXSTA1bits.TX9 = 0;
+    TXSTA1bits.TXEN = 1;
+    RCSTA1bits.SPEN = 1;
+    RCSTA1bits.CREN = 1;
+    IPR1bits.RC1IP = 0;
+    PIE1bits.RC1IE = 1;
+
+
+    T0CONbits.TMR0ON = 1;
+    T1CONbits.TMR1ON = 1;
+    T3CONbits.TMR3ON = 1;
+
+}
+
+void __attribute__((picinterrupt(("")))) HiPriISR (void){
+    while(1){
+
+
+
+
+    break;
+    }
+    return;
+}
+void __attribute__((picinterrupt(("low_priority")))) LoPriISR (void){
+    Status_temp = STATUS;
+    Wreg_temp = WREG;
+    BSR_temp = BSR;
+    while(1){
+        if(PIR3bits.CCP1IF){
+            CCP1handler();
+            continue;
+        }
+        if(PIR4bits.CCP4IF){
+            CCP4handler();
+            continue;
+        }
+        if(PIR1bits.TMR1IF){
+            TMR1handler();
+            continue;
+        }
+
+        if(PIR2bits.TMR3IF){
+            TMR3handler();
+            continue;
+        }
+
+        break;
+    }
+    STATUS = Status_temp;
+    WREG = Wreg_temp;
+    BSR = BSR_temp;
+}
+void CCP1handler(void){
+    unsigned long CCPRT;
+    if(PIR1bits.TMR1IF){
+        if(CCPR1H < 0b10000000){
+            TMR1X++;
+            time0counter++;
+            PIR1bits.TMR1IF = 0;
+        }
+    }
+    if(CCPR1X != TMR1X){
+        PIR3bits.CCP1IF = 0;
+        return;
+    }
+    LATDbits.LATD1 = !LATDbits.LATD1;
+    if(LATDbits.LATD1 == 1){
+        CCPRT = ((unsigned long)CCPR1X*65536) + ((unsigned long)CCPR1H*256) + (unsigned long)CCPR1L;
+        CCPRT += Servo1_on;
+        CCPR1L = (CCPRT & 0x0000FF);
+        CCPR1H = (CCPRT & 0x00FF00)/256;
+        CCPR1X = (CCPRT & 0xFF0000)/65536;
+    }
+    if(LATDbits.LATD1 == 0){
+      CCPRT = ((unsigned long)CCPR1X*65536) + ((unsigned long)CCPR1H*256) + (unsigned long)CCPR1L;
+        CCPRT += Servo1_off;
+        CCPR1L = CCPRT & 0x0000FF;
+        CCPR1H = (CCPRT & 0x00FF00)/256;
+        CCPR1X = (CCPRT & 0xFF0000)/65536;
+    }
+    PIR3bits.CCP1IF = 0;
+    return;
+}
+void CCP4handler(void){
+    unsigned long CCPRT;
+    if(PIR2bits.TMR3IF){
+        if(CCPR4H < 0b10000000){
+            TMR3X++;
+            PIR2bits.TMR3IF = 0;
+        }
+    }
+    if(CCPR4X != TMR3X){
+        PIR4bits.CCP4IF = 0;
+        return;
+    }
+    LATEbits.LATE1 = !LATEbits.LATE1;
+    if(LATEbits.LATE1 == 1){
+        CCPRT = ((unsigned long)CCPR4X*65536) + ((unsigned long)CCPR4H*256) + (unsigned long)CCPR4L;
+        CCPRT += Servo2_on;
+        CCPR4L = (CCPRT & 0x0000FF);
+        CCPR4H = (CCPRT & 0x00FF00)/256;
+        CCPR4X = (CCPRT & 0xFF0000)/65536;
+    }
+    if(LATEbits.LATE1 == 0){
+        CCPRT = ((unsigned long)CCPR4X*65536) + ((unsigned long)CCPR4H*256) + (unsigned long)CCPR4L;
+        CCPRT += Servo2_off;
+        CCPR4L = (CCPRT & 0x0000FF);
+        CCPR4H = (CCPRT & 0x00FF00)/256;
+        CCPR4X = (CCPRT & 0xFF0000)/65536;
+    }
+    PIR4bits.CCP4IF = 0;
+    return;
+}
+void TMR1handler(void){
+    TMR1X++;
+    time0counter++;
+    PIR1bits.TMR1IF = 0;
+    return;
+}
+void TMR3handler(void){
+    TMR3X++;
+    PIR2bits.TMR3IF = 0;
+    return;
+}
+void TMR0handler(void){
+    time0counter++;
+    CurrentTime = time0counter*0.064;
+    INTCONbits.TMR0IF = 0;
+    return;
+}
+
+unsigned int map(unsigned int value,unsigned int valuemin,unsigned int valuemax,unsigned int newmin,unsigned int newmax){
+    unsigned int first = (value - valuemin);
+    unsigned long second = (unsigned long)first*((unsigned long)newmax - (unsigned long)newmin);
+    unsigned int third = second/(valuemax - valuemin);
+    return third + newmin;
+
+}
+void Servo1(unsigned int angle){
+    unsigned int temp;
+    if(angle < 0){
+        angle = -1*angle;
+    }
+    if(angle > 180){
+        angle = 180;
+    }
+    if(angle < 0){
+        angle = 0;
+    }
+    temp = Servo1_on;
+    Servo1_on = map(angle,0,180,2000,9600);
+    Servo1_off -= Servo1_on - temp;
+}
+void Servo2(unsigned int angle){
+    unsigned int temp;
+    if(angle < 0){
+        angle = -1*angle;
+    }
+    if(angle > 180){
+        angle = 180;
+    }
+    if(angle < 0){
+        angle = 0;
+    }
+    temp = Servo2_on;
+    Servo2_on = map(angle,0,180,2000,9600);
+    Servo2_off -= Servo2_on - temp;
 }
 
 void I2C_Master_Wait(void){
-    while((SSP1STAT & 0x04)||(SSP1CON2 & 0x1F)){
+    while((SSP1STAT & 0x04) || (SSP1CON2 & 0x1F)){
     }
 }
 
@@ -11851,44 +12089,45 @@ void I2C_Start(char add){
     I2C_Master_Write(add);
 }
 
-void I2C_Master_RepeatedStart(){
+void I2C_Master_RepeatedStart(void){
     I2C_Master_Wait();
     SSP1CON2bits.RSEN = 1;
 }
 
-void I2C_Master_Stop(){
+void I2C_Master_Stop(void){
     I2C_Master_Wait();
     SSP1CON2bits.PEN = 1;
 }
+
 void I2C_ACK(void){
     SSP1CON2bits.ACKDT = 0;
     SSP1CON2bits.ACKEN = 1;
-    while(SSP1CON2bits.ACKEN){
+    while(SSP1CON2bits.ACKEN == 1){
     }
 }
 
 void I2C_NACK(void){
     SSP1CON2bits.ACKDT = 1;
     SSP1CON2bits.ACKEN = 1;
-    while(SSP1CON2bits.ACKEN){
+    while(SSP1CON2bits.ACKEN == 1){
     }
 }
 
 unsigned char I2C_Master_Write(unsigned char data){
     I2C_Master_Wait();
     SSP1BUF = data;
-    while(!SSP1IF){
+    while(!PIR1bits.SSP1IF){
     }
-    SSP1IF = 0;
+    PIR1bits.SSP1IF = 0;
     return SSP1CON2bits.ACKSTAT;
 }
 
 unsigned char I2C_Read_Byte(void){
     I2C_Master_Wait();
     SSP1CON2bits.RCEN = 1;
-    while(!SSP1IF){
+    while(!PIR1bits.SSP1IF){
     }
-    SSP1IF = 0;
+    PIR1bits.SSP1IF = 0;
     I2C_Master_Wait();
     return SSP1BUF;
 }
@@ -11905,88 +12144,80 @@ unsigned char I2C_Read(unsigned char ACK_NACK){
     else{
         I2C_NACK();
     }
-    while(!SSP1IF){
+    while(!PIR1bits.SSP1IF){
     }
-    SSP1IF = 0;
+    PIR1bits.SSP1IF = 0;
     return Data;
 }
 
-void usartIntial(void){
+void MPU6050_Read(void){
+    char buffer[40];
+    int Ax,Ay,Az,Gx,Gy,Gz,T;
+    float accAngleX, accAngleY;
+    float AX,AY,AZ,GX,GY,GZ,t, roll, pitch;
+    CurrentTime = ((time0counter*0.016384)+(((double)TMR1H*256) + (double)TMR1L)*0.000000250)*1000;
+    float elapsedTime = (CurrentTime - previousTime) / 1000;
+    previousTime = CurrentTime;
+    I2C_Start(0xD0);
+    I2C_Master_Write(0x3B);
+    I2C_Master_Stop();
+    I2C_Start(0xD1);
+    I2C_Read(0);
+    Ax = ((int)I2C_Read(0)<<8) | (int)I2C_Read(0);
+    Ay = ((int)I2C_Read(0)<<8) | (int)I2C_Read(0);
+    Az = ((int)I2C_Read(0)<<8) | (int)I2C_Read(0);
+    T = ((int)I2C_Read(0)<<8) | (int)I2C_Read(0);
+    Gx = ((int)I2C_Read(0)<<8) | (int)I2C_Read(0);
+    Gy = ((int)I2C_Read(0)<<8) | (int)I2C_Read(0);
+    Gz = ((int)I2C_Read(0)<<8) | (int)I2C_Read(1);
+    I2C_Master_Stop();
 
-    TRISCbits.TRISC7 = 1;
-    TRISCbits.TRISC6 = 0;
-    BAUDCON1bits.BRG16 = 0;
-    BAUDCON1bits.RCIDL = 1;
-    SPBRG1 = 12;
-    SPBRGH1 = 0x00;
-    TXSTA1bits.BRGH = 0;
-    TXSTA1bits.TX9 = 0;
-    TXSTA1bits.TXEN = 1;
-    RCSTA1bits.SPEN = 1;
-    RCSTA1bits.CREN = 1;
+    AX = (float)Ax/16384.0;
+    AY = (float)Ay/16384.0;
+    AZ = (float)Az/16384.0;
+    GX = (float)Gx/131.0;
+    GY = (float)Gy/131.0;
+    GZ = (float)Gz/131.0;
+    t = ((float)T/340.00)+36.53;
+# 480 "Le_Jason_Project.c"
+      accAngleX=(-atan2f(AX/9.8,-AY/9.8)/2/3.141592654*360)+1.9;
 
-    IPR1bits.RC1IP = 0;
-    PIE1bits.RC1IE = 1;
-}
+     accAngleY = (-atan2f(-AZ/9.8,-AY/9.8)/2/3.141592654*360)-1.9;
+    GyroAngleX = GX*elapsedTime;
+    GyroAngleY = -GZ*elapsedTime;
 
-void TMR0Config(unsigned int angle){
-    unsigned int temp = 0;
-    if(LATDbits.LATD1 == 0){
-        T0CON = 0b00001000;
-        TMR0H = 0xF0 - angle*0x0F;
-        TMR0L = 0x60 - angle*0xA0;
+    roll = 0.96*(GyroAngleX + accAngleX) + 0.04*accAngleX;
+    pitch = 0.96*(GyroAngleY+ accAngleY) + 0.04*accAngleY;
 
-        temp = 1;
-        LATDbits.LATD1 = 1;
-        T0CONbits.TMR0ON = 1;
-    }
-    if((LATDbits.LATD1 == 1)&&(temp == 0)){
-        T0CON = 0b00000000;
-        TMR0H = 0x6B + angle*0x0F;
-        TMR0L = 0x90 + angle*0xA0;
+    sprintf(buffer," roll = %.2f \t",roll);
+    UART_Write_String(buffer);
+    sprintf(buffer," pitch = %.2f \t",pitch);
+    UART_Write_String(buffer);
+    sprintf(buffer," elapsedTime = %.2f \t",AX);
+    UART_Write_String(buffer);
+    sprintf(buffer," GyroAngleX = %.2f \t",GyroAngleX);
+    UART_Write_String(buffer);
+    sprintf(buffer," GyroAngleY = %.2f \t",GyroAngleY);
+    UART_Write_String(buffer);
+    sprintf(buffer," accAngleX = %.2f \t",accAngleX);
+    UART_Write_String(buffer);
+    sprintf(buffer," accAngleY = %.2f \r\n",accAngleY);
+    UART_Write_String(buffer);
 
-        LATDbits.LATD1 = 0;
-        T0CONbits.TMR0ON = 1;
-    }
+    Servo1(90.0-roll);
+    Servo2(90.0-pitch);
+
     return;
 }
 
-void __attribute__((picinterrupt(("")))) HiPriISR (void)
-{
-
-}
-void __attribute__((picinterrupt(("low_priority")))) LoPriISR (void)
-{
-    Status_temp = STATUS;
-    Wreg_temp = WREG;
-    BSR_temp = BSR;
-    while(1) {
-        if(INTCONbits.TMR0IF){
-            TMR0Config(angle);
-            INTCONbits.TMR0IF = 0;
-            continue;
+void UART_Write(unsigned char data){
+    while(PIR1bits.TX1IF == 0){
         }
-        break;
-    }
-    STATUS = Status_temp;
-    WREG = Wreg_temp;
-    BSR = BSR_temp;
+    TXREG1 = data;
 }
 
-void Servo(unsigned int value){
-    if(value < 0)
-        value = 0;
-    if(value > 180)
-        value = 180;
-    value = map(value,0,180,544,2400);
-    if(value < 544)
-        value = 544;
-    else if(value > 544)
-        value = 2400;
-
-}
-
-
-unsigned int map(unsigned int value,unsigned int valuemin,unsigned int valuemax,unsigned int newmin,unsigned int newmax){
-    return ((((value - valuemin)*(newmax - newmin))/(valuemax - valuemin)) + newmin);
+void UART_Write_String(char* buf){
+    int i = 0;
+    while(buf[i] != '\0')
+        UART_Write(buf[i++]);
 }

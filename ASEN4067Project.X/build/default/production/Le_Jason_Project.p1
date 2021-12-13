@@ -1,34 +1,28 @@
 Version 4.0 HI-TECH Software Intermediate Code
 [p mainexit ]
-"48 Le_Jason_Project.c
-[; ;Le_Jason_Project.c: 48: void Initial(void);
+"40 Le_Jason_Project.c
+[; ;Le_Jason_Project.c: 40: unsigned char I2C_Read(unsigned char ACK_NACK);
 [v _Initial `(v ~T0 @X0 0 ef ]
-"63
-[; ;Le_Jason_Project.c: 63: void InitialIMU(void);
-[v _InitialIMU `(v ~T0 @X0 0 ef ]
+"46
+[; ;Le_Jason_Project.c: 46: void UART_Write(unsigned char data);
+[v _Servo1 `(v ~T0 @X0 0 ef1`ui ]
+"47
+[; ;Le_Jason_Project.c: 47: void UART_Write_String(char* buf);
+[v _Servo2 `(v ~T0 @X0 0 ef1`ui ]
+"60
+[; ;Le_Jason_Project.c: 60:             MPU6050_Read();
+[v _MPU6050_Read `(v ~T0 @X0 0 ef ]
 [v F6435 `(v ~T0 @X0 1 tf1`ul ]
 "203 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\pic18.h
 [v __delay `JF6435 ~T0 @X0 0 e ]
 [p i __delay ]
-"64 Le_Jason_Project.c
-[; ;Le_Jason_Project.c: 64: void IMURead(void);
-[v _IMURead `(v ~T0 @X0 0 ef ]
-"49
-[; ;Le_Jason_Project.c: 49: void InitialPorts(void);
-[v _InitialPorts `(v ~T0 @X0 0 ef ]
-"50
-[; ;Le_Jason_Project.c: 50: void InitialPrio(void);
-[v _InitialPrio `(v ~T0 @X0 0 ef ]
-"55
-[; ;Le_Jason_Project.c: 55: void I2C_Start(char add);
-[v _I2C_Start `(v ~T0 @X0 0 ef1`uc ]
-"60
-[; ;Le_Jason_Project.c: 60: unsigned char I2C_Master_Write(unsigned char data);
-[v _I2C_Master_Write `(uc ~T0 @X0 0 ef1`uc ]
-"62
-[; ;Le_Jason_Project.c: 62: unsigned char I2C_Read(unsigned char ACK_NACK);
-[v _I2C_Read `(uc ~T0 @X0 0 ef1`uc ]
-"10718 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h
+"10656 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 10656: extern volatile unsigned char TRISC __attribute__((address(0xF94)));
+[v _TRISC `Vuc ~T0 @X0 0 e@3988 ]
+"9794
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 9794: extern volatile unsigned char LATC __attribute__((address(0xF8B)));
+[v _LATC `Vuc ~T0 @X0 0 e@3979 ]
+"10718
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 10718: extern volatile unsigned char TRISD __attribute__((address(0xF95)));
 [v _TRISD `Vuc ~T0 @X0 0 e@3989 ]
 "9906
@@ -98,56 +92,145 @@ Version 4.0 HI-TECH Software Intermediate Code
 "17576
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 17576: extern volatile INTCONbits_t INTCONbits __attribute__((address(0xFF2)));
 [v _INTCONbits `VS803 ~T0 @X0 0 e@4082 ]
-"17457
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 17457:     struct {
-[s S800 :7 `uc 1 :1 `uc 1 ]
-[n S800 . . NOT_RBPU ]
-"17461
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 17461:     struct {
-[s S801 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S801 . RBIP INT3IP TMR0IP INTEDG3 INTEDG2 INTEDG1 INTEDG0 nRBPU ]
-"17471
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 17471:     struct {
-[s S802 :1 `uc 1 :1 `uc 1 :1 `uc 1 :4 `uc 1 :1 `uc 1 ]
-[n S802 . . INT3P T0IP . RBPU ]
-"17456
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 17456: typedef union {
-[u S799 `S800 1 `S801 1 `S802 1 ]
-[n S799 . . . . ]
-"17479
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 17479: extern volatile INTCON2bits_t INTCON2bits __attribute__((address(0xFF1)));
-[v _INTCON2bits `VS799 ~T0 @X0 0 e@4081 ]
-"16722
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 16722: extern volatile unsigned char T0CON __attribute__((address(0xFD5)));
-[v _T0CON `Vuc ~T0 @X0 0 e@4053 ]
-"16819
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 16819: extern volatile unsigned char TMR0H __attribute__((address(0xFD7)));
-[v _TMR0H `Vuc ~T0 @X0 0 e@4055 ]
-"16799
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 16799: extern volatile unsigned char TMR0L __attribute__((address(0xFD6)));
-[v _TMR0L `Vuc ~T0 @X0 0 e@4054 ]
-"16728
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 16728:     struct {
-[s S749 :3 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S749 . T0PS PSA T0SE T0CS T08BIT TMR0ON ]
-"16736
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 16736:     struct {
-[s S750 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S750 . T0PS0 T0PS1 T0PS2 ]
-"16727
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 16727: typedef union {
-[u S748 `S749 1 `S750 1 ]
-[n S748 . . . ]
-"16742
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 16742: extern volatile T0CONbits_t T0CONbits __attribute__((address(0xFD5)));
-[v _T0CONbits `VS748 ~T0 @X0 0 e@4053 ]
-"52 Le_Jason_Project.c
-[; ;Le_Jason_Project.c: 52: void I2C_Master_Init(void);
-[v _I2C_Master_Init `(v ~T0 @X0 0 ef ]
-"57
-[; ;Le_Jason_Project.c: 57: void I2C_Master_Stop();
-[v _I2C_Master_Stop `(v ~T0 @X0 0 e? ]
-"14881 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h
+"16174
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 16174: extern volatile unsigned char T1CON __attribute__((address(0xFCD)));
+[v _T1CON `Vuc ~T0 @X0 0 e@4045 ]
+"13721
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 13721: extern volatile unsigned char CCP1CON __attribute__((address(0xFBB)));
+[v _CCP1CON `Vuc ~T0 @X0 0 e@4027 ]
+"1791
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 1791: extern volatile unsigned char CCPTMRS0 __attribute__((address(0xF2D)));
+[v _CCPTMRS0 `Vuc ~T0 @X0 0 e@3885 ]
+"11375
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11375:     struct {
+[s S493 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S493 . TMR1IP TMR2IP TMR1GIP SSP1IP TX1IP RC1IP ADIP PSPIP ]
+"11385
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11385:     struct {
+[s S494 :3 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S494 . . SSPIP TXIP RCIP ]
+"11374
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11374: typedef union {
+[u S492 `S493 1 `S494 1 ]
+[n S492 . . . ]
+"11392
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11392: extern volatile IPR1bits_t IPR1bits __attribute__((address(0xF9F)));
+[v _IPR1bits `VS492 ~T0 @X0 0 e@3999 ]
+"11852
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11852:     struct {
+[s S512 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S512 . RTCCIP CCP1IP CCP2IP CTMUIP TX2IP RC2IP . TMR5GIP ]
+"11862
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11862:     struct {
+[s S513 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S513 . . RXBNIP . TXBNIP ]
+"11851
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11851: typedef union {
+[u S511 `S512 1 `S513 1 ]
+[n S511 . . . ]
+"11869
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11869: extern volatile IPR3bits_t IPR3bits __attribute__((address(0xFA5)));
+[v _IPR3bits `VS511 ~T0 @X0 0 e@4005 ]
+"11674
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11674:     struct {
+[s S505 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S505 . RTCCIE CCP1IE CCP2IE CTMUIE TX2IE RC2IE . TMR5GIE ]
+"11684
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11684:     struct {
+[s S506 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S506 . RXB0IE RXB1IE TXB0IE TXB1IE TXB2IE ]
+"11691
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11691:     struct {
+[s S507 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S507 . . RXBNIE . TXBNIE ]
+"11673
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11673: typedef union {
+[u S504 `S505 1 `S506 1 `S507 1 ]
+[n S504 . . . . ]
+"11698
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11698: extern volatile PIE3bits_t PIE3bits __attribute__((address(0xFA3)));
+[v _PIE3bits `VS504 ~T0 @X0 0 e@4003 ]
+"11209
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11209:     struct {
+[s S487 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S487 . TMR1IE TMR2IE TMR1GIE SSP1IE TX1IE RC1IE ADIE PSPIE ]
+"11219
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11219:     struct {
+[s S488 :3 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S488 . . SSPIE TXIE RCIE ]
+"11208
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11208: typedef union {
+[u S486 `S487 1 `S488 1 ]
+[n S486 . . . ]
+"11226
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11226: extern volatile PIE1bits_t PIE1bits __attribute__((address(0xF9D)));
+[v _PIE1bits `VS486 ~T0 @X0 0 e@3997 ]
+"13054
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 13054: extern volatile unsigned char T3CON __attribute__((address(0xFB1)));
+[v _T3CON `Vuc ~T0 @X0 0 e@4017 ]
+"7233
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 7233: extern volatile unsigned char CCP4CON __attribute__((address(0xF77)));
+[v _CCP4CON `Vuc ~T0 @X0 0 e@3959 ]
+"1724
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 1724: extern volatile unsigned char CCPTMRS1 __attribute__((address(0xF2C)));
+[v _CCPTMRS1 `Vuc ~T0 @X0 0 e@3884 ]
+"11602
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11602:     struct {
+[s S502 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S502 . TMR3GIP TMR3IP HLVDIP BCL1IP BCL2IP SSP2IP . OSCFIP ]
+"11612
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11612:     struct {
+[s S503 :2 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S503 . . LVDIP BCLIP ]
+"11601
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11601: typedef union {
+[u S501 `S502 1 `S503 1 ]
+[n S501 . . . ]
+"11618
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11618: extern volatile IPR2bits_t IPR2bits __attribute__((address(0xFA2)));
+[v _IPR2bits `VS501 ~T0 @X0 0 e@4002 ]
+"13533
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 13533:     struct {
+[s S600 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S600 . CCP3IP CCP4IP CCP5IP CCP6IP CCP7IP CCP8IP CCP9IP CCP10IP ]
+"13543
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 13543:     struct {
+[s S601 :1 `uc 1 ]
+[n S601 . CCIP3IP ]
+"13532
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 13532: typedef union {
+[u S599 `S600 1 `S601 1 ]
+[n S599 . . . ]
+"13547
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 13547: extern volatile IPR4bits_t IPR4bits __attribute__((address(0xFB8)));
+[v _IPR4bits `VS599 ~T0 @X0 0 e@4024 ]
+"13409
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 13409:     struct {
+[s S596 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S596 . CCP3IE CCP4IE CCP5IE CCP6IE CCP7IE CCP8IE CCP9IE CCP10IE ]
+"13408
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 13408: typedef union {
+[u S595 `S596 1 ]
+[n S595 . . ]
+"13420
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 13420: extern volatile PIE4bits_t PIE4bits __attribute__((address(0xFB6)));
+[v _PIE4bits `VS595 ~T0 @X0 0 e@4022 ]
+"11458
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11458:     struct {
+[s S496 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S496 . TMR3GIE TMR3IE HLVDIE BCL1IE BCL2IE SSP2IE . OSCFIE ]
+"11468
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11468:     struct {
+[s S497 :2 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S497 . . LVDIE BCLIE ]
+"11457
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11457: typedef union {
+[u S495 `S496 1 `S497 1 ]
+[n S495 . . . ]
+"11474
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11474: extern volatile PIE2bits_t PIE2bits __attribute__((address(0xFA0)));
+[v _PIE2bits `VS495 ~T0 @X0 0 e@4000 ]
+"14881
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 14881: extern volatile unsigned char SSP1CON1 __attribute__((address(0xFC6)));
 [v _SSP1CON1 `Vuc ~T0 @X0 0 e@4038 ]
 "14527
@@ -170,103 +253,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 "10673
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 10673: extern volatile TRISCbits_t TRISCbits __attribute__((address(0xF94)));
 [v _TRISCbits `VS466 ~T0 @X0 0 e@3988 ]
-"14538
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 14538:     struct {
-[s S648 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S648 . SEN RSEN PEN RCEN ACKEN ACKDT ACKSTAT GCEN ]
-"14548
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 14548:     struct {
-[s S649 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S649 . . ADMSK1 ADMSK2 ADMSK3 ADMSK4 ADMSK5 ]
-"14556
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 14556:     struct {
-[s S650 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S650 . SEN1 ADMSK11 ADMSK21 ADMSK31 ACKEN1 ACKDT1 ACKSTAT1 GCEN1 ]
-"14566
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 14566:     struct {
-[s S651 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S651 . . RSEN1 PEN1 RCEN1 ADMSK41 ADMSK51 ]
-"14537
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 14537: typedef union {
-[u S647 `S648 1 `S649 1 `S650 1 `S651 1 ]
-[n S647 . . . . . ]
-"14575
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 14575: extern volatile SSP1CON2bits_t SSP1CON2bits __attribute__((address(0xFC5)));
-[v _SSP1CON2bits `VS647 ~T0 @X0 0 e@4037 ]
-"16025
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 16025: extern volatile unsigned char SSP1BUF __attribute__((address(0xFC9)));
-[v _SSP1BUF `Vuc ~T0 @X0 0 e@4041 ]
-"21425
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 21425: extern volatile __bit SSP1IF __attribute__((address(0x7CF3)));
-[v _SSP1IF `Vb ~T0 @X0 0 e@31987 ]
-"15130
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15130:     struct {
-[s S666 :2 `uc 1 :1 `uc 1 ]
-[n S666 . . R_NOT_W ]
-"15134
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15134:     struct {
-[s S667 :5 `uc 1 :1 `uc 1 ]
-[n S667 . . D_NOT_A ]
-"15138
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15138:     struct {
-[s S668 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S668 . BF UA R_nW S P D_nA CKE SMP ]
-"15148
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15148:     struct {
-[s S669 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
-[n S669 . . R . D ]
-"15154
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15154:     struct {
-[s S670 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
-[n S670 . . R_W . D_A ]
-"15160
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15160:     struct {
-[s S671 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
-[n S671 . . nW . nA ]
-"15166
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15166:     struct {
-[s S672 :2 `uc 1 :1 `uc 1 ]
-[n S672 . . NOT_WRITE ]
-"15170
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15170:     struct {
-[s S673 :5 `uc 1 :1 `uc 1 ]
-[n S673 . . NOT_ADDRESS ]
-"15174
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15174:     struct {
-[s S674 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
-[n S674 . . nWRITE . nADDRESS ]
-"15180
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15180:     struct {
-[s S675 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
-[n S675 . . READ_WRITE . DATA_ADDRESS ]
-"15186
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15186:     struct {
-[s S676 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S676 . . I2C_READ I2C_START I2C_STOP I2C_DAT ]
-"15193
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15193:     struct {
-[s S677 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S677 . BF1 UA1 RW START STOP DA CKE1 SMP1 ]
-"15203
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15203:     struct {
-[s S678 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S678 . . RW1 START1 STOP1 DA1 ]
-"15210
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15210:     struct {
-[s S679 :2 `uc 1 :1 `uc 1 ]
-[n S679 . . NOT_W ]
-"15214
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15214:     struct {
-[s S680 :5 `uc 1 :1 `uc 1 ]
-[n S680 . . NOT_A ]
-"15129
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15129: typedef union {
-[u S665 `S666 1 `S667 1 `S668 1 `S669 1 `S670 1 `S671 1 `S672 1 `S673 1 `S674 1 `S675 1 `S676 1 `S677 1 `S678 1 `S679 1 `S680 1 ]
-[n S665 . . . . . . . . . . . . . . . . ]
-"15219
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15219: extern volatile SSP1STATbits_t SSP1STATbits __attribute__((address(0xFC7)));
-[v _SSP1STATbits `VS665 ~T0 @X0 0 e@4039 ]
-"5367
+"51 Le_Jason_Project.c
+[; ;Le_Jason_Project.c: 51: unsigned int map(unsigned int value,unsigned int valuemin,unsigned int valuemax,unsigned int newmin,unsigned int newmax);
+[v _I2C_Start `(v ~T0 @X0 0 ef1`uc ]
+"56
+[; ;Le_Jason_Project.c: 56:     while(1){
+[v _I2C_Master_Write `(uc ~T0 @X0 0 ef1`uc ]
+"53
+[; ;Le_Jason_Project.c: 53:     Initial();
+[v _I2C_Master_Stop `(v ~T0 @X0 0 ef ]
+"5367 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 5367:     struct {
 [s S247 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S247 . ABDEN WUE . BRG16 TXCKP RXDTP RCIDL ABDOVF ]
@@ -369,36 +365,154 @@ Version 4.0 HI-TECH Software Intermediate Code
 "12265
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 12265: extern volatile RCSTA1bits_t RCSTA1bits __attribute__((address(0xFAB)));
 [v _RCSTA1bits `VS529 ~T0 @X0 0 e@4011 ]
-"11375
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11375:     struct {
-[s S493 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S493 . TMR1IP TMR2IP TMR1GIP SSP1IP TX1IP RC1IP ADIP PSPIP ]
-"11385
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11385:     struct {
-[s S494 :3 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S494 . . SSPIP TXIP RCIP ]
-"11374
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11374: typedef union {
-[u S492 `S493 1 `S494 1 ]
-[n S492 . . . ]
-"11392
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11392: extern volatile IPR1bits_t IPR1bits __attribute__((address(0xF9F)));
-[v _IPR1bits `VS492 ~T0 @X0 0 e@3999 ]
-"11209
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11209:     struct {
-[s S487 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S487 . TMR1IE TMR2IE TMR1GIE SSP1IE TX1IE RC1IE ADIE PSPIE ]
-"11219
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11219:     struct {
-[s S488 :3 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S488 . . SSPIE TXIE RCIE ]
-"11208
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11208: typedef union {
-[u S486 `S487 1 `S488 1 ]
-[n S486 . . . ]
-"11226
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11226: extern volatile PIE1bits_t PIE1bits __attribute__((address(0xF9D)));
-[v _PIE1bits `VS486 ~T0 @X0 0 e@3997 ]
+"16728
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 16728:     struct {
+[s S749 :3 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S749 . T0PS PSA T0SE T0CS T08BIT TMR0ON ]
+"16736
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 16736:     struct {
+[s S750 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S750 . T0PS0 T0PS1 T0PS2 ]
+"16727
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 16727: typedef union {
+[u S748 `S749 1 `S750 1 ]
+[n S748 . . . ]
+"16742
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 16742: extern volatile T0CONbits_t T0CONbits __attribute__((address(0xFD5)));
+[v _T0CONbits `VS748 ~T0 @X0 0 e@4053 ]
+"16180
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 16180:     struct {
+[s S720 :2 `uc 1 :1 `uc 1 ]
+[n S720 . . NOT_T1SYNC ]
+"16184
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 16184:     struct {
+[s S721 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 :2 `uc 1 ]
+[n S721 . TMR1ON RD16 nT1SYNC SOSCEN T1CKPS TMR1CS ]
+"16192
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 16192:     struct {
+[s S722 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S722 . . T1CKPS0 T1CKPS1 TMR1CS0 TMR1CS1 ]
+"16199
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 16199:     struct {
+[s S723 :3 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 ]
+[n S723 . . T1OSCEN . T1RD16 ]
+"16179
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 16179: typedef union {
+[u S719 `S720 1 `S721 1 `S722 1 `S723 1 ]
+[n S719 . . . . . ]
+"16206
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 16206: extern volatile T1CONbits_t T1CONbits __attribute__((address(0xFCD)));
+[v _T1CONbits `VS719 ~T0 @X0 0 e@4045 ]
+"13060
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 13060:     struct {
+[s S576 :2 `uc 1 :1 `uc 1 ]
+[n S576 . . NOT_T3SYNC ]
+"13064
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 13064:     struct {
+[s S577 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 :2 `uc 1 ]
+[n S577 . TMR3ON RD16 nT3SYNC SOSCEN T3CKPS TMR3CS ]
+"13072
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 13072:     struct {
+[s S578 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S578 . . T3CKPS0 T3CKPS1 TMR3CS0 TMR3CS1 ]
+"13079
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 13079:     struct {
+[s S579 :3 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 ]
+[n S579 . . SOSCEN3 . RD163 ]
+"13085
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 13085:     struct {
+[s S580 :7 `uc 1 :1 `uc 1 ]
+[n S580 . . T3RD16 ]
+"13059
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 13059: typedef union {
+[u S575 `S576 1 `S577 1 `S578 1 `S579 1 `S580 1 ]
+[n S575 . . . . . . ]
+"13090
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 13090: extern volatile T3CONbits_t T3CONbits __attribute__((address(0xFB1)));
+[v _T3CONbits `VS575 ~T0 @X0 0 e@4017 ]
+[t ~ __interrupt . k ]
+[t T97 __interrupt ]
+[t T98 __interrupt low_priority ]
+"16839
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 16839: extern volatile unsigned char STATUS __attribute__((address(0xFD8)));
+[v _STATUS `Vuc ~T0 @X0 0 e@4056 ]
+"17185
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 17185: extern volatile unsigned char WREG __attribute__((address(0xFE8)));
+[v _WREG `Vuc ~T0 @X0 0 e@4072 ]
+"17044
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 17044: extern volatile unsigned char BSR __attribute__((address(0xFE0)));
+[v _BSR `Vuc ~T0 @X0 0 e@4064 ]
+"11779
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11779:     struct {
+[s S509 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S509 . RTCCIF CCP1IF CCP2IF CTMUIF TX2IF RC2IF . TMR5GIF ]
+"11789
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11789:     struct {
+[s S510 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S510 . . RXBNIF . TXBNIF ]
+"11778
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11778: typedef union {
+[u S508 `S509 1 `S510 1 ]
+[n S508 . . . ]
+"11796
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11796: extern volatile PIR3bits_t PIR3bits __attribute__((address(0xFA4)));
+[v _PIR3bits `VS508 ~T0 @X0 0 e@4004 ]
+"42 Le_Jason_Project.c
+[; ;Le_Jason_Project.c: 42: void MPU6050_Read(void);
+[v _CCP1handler `(v ~T0 @X0 0 ef ]
+"13471 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 13471:     struct {
+[s S598 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S598 . CCP3IF CCP4IF CCP5IF CCP6IF CCP7IF CCP8IF CCP9IF CCP10IF ]
+"13470
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 13470: typedef union {
+[u S597 `S598 1 ]
+[n S597 . . ]
+"13482
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 13482: extern volatile PIR4bits_t PIR4bits __attribute__((address(0xFB7)));
+[v _PIR4bits `VS597 ~T0 @X0 0 e@4023 ]
+"43 Le_Jason_Project.c
+[; ;Le_Jason_Project.c: 43: void TMR0handler(void);
+[v _CCP4handler `(v ~T0 @X0 0 ef ]
+"11292 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11292:     struct {
+[s S490 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S490 . TMR1IF TMR2IF TMR1GIF SSP1IF TX1IF RC1IF ADIF PSPIF ]
+"11302
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11302:     struct {
+[s S491 :3 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S491 . . SSPIF TXIF RCIF ]
+"11291
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11291: typedef union {
+[u S489 `S490 1 `S491 1 ]
+[n S489 . . . ]
+"11309
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11309: extern volatile PIR1bits_t PIR1bits __attribute__((address(0xF9E)));
+[v _PIR1bits `VS489 ~T0 @X0 0 e@3998 ]
+"44 Le_Jason_Project.c
+[; ;Le_Jason_Project.c: 44: 
+[v _TMR1handler `(v ~T0 @X0 0 ef ]
+"11530 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11530:     struct {
+[s S499 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S499 . TMR3GIF TMR3IF HLVDIF BCL1IF BCL2IF SSP2IF . OSCFIF ]
+"11540
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11540:     struct {
+[s S500 :2 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S500 . . LVDIF BCLIF ]
+"11529
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11529: typedef union {
+[u S498 `S499 1 `S500 1 ]
+[n S498 . . . ]
+"11546
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 11546: extern volatile PIR2bits_t PIR2bits __attribute__((address(0xFA1)));
+[v _PIR2bits `VS498 ~T0 @X0 0 e@4001 ]
+"45 Le_Jason_Project.c
+[; ;Le_Jason_Project.c: 45: void UART_TX_Init(void);
+[v _TMR3handler `(v ~T0 @X0 0 ef ]
+"13940 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 13940: extern volatile unsigned char CCPR1H __attribute__((address(0xFBD)));
+[v _CCPR1H `Vuc ~T0 @X0 0 e@4029 ]
 "9912
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 9912:     struct {
 [s S445 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -414,21 +528,140 @@ Version 4.0 HI-TECH Software Intermediate Code
 "9933
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 9933: extern volatile LATDbits_t LATDbits __attribute__((address(0xF8C)));
 [v _LATDbits `VS444 ~T0 @X0 0 e@3980 ]
-[t ~ __interrupt . k ]
-[t T97 __interrupt ]
-[t T98 __interrupt low_priority ]
-"16839
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 16839: extern volatile unsigned char STATUS __attribute__((address(0xFD8)));
-[v _STATUS `Vuc ~T0 @X0 0 e@4056 ]
-"17185
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 17185: extern volatile unsigned char WREG __attribute__((address(0xFE8)));
-[v _WREG `Vuc ~T0 @X0 0 e@4072 ]
-"17044
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 17044: extern volatile unsigned char BSR __attribute__((address(0xFE0)));
-[v _BSR `Vuc ~T0 @X0 0 e@4064 ]
-"71 Le_Jason_Project.c
-[; ;Le_Jason_Project.c: 71: unsigned int map(unsigned int value,unsigned int valuemin,unsigned int valuemax,unsigned int newmin,unsigned int newmax);
-[v _map `(ui ~T0 @X0 0 ef5`ui`ui`ui`ui`ui ]
+"13920
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 13920: extern volatile unsigned char CCPR1L __attribute__((address(0xFBC)));
+[v _CCPR1L `Vuc ~T0 @X0 0 e@4028 ]
+"7339
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 7339: extern volatile unsigned char CCPR4H __attribute__((address(0xF79)));
+[v _CCPR4H `Vuc ~T0 @X0 0 e@3961 ]
+"10024
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 10024:     struct {
+[s S448 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S448 . LATE0 LATE1 LATE2 LATE3 LATE4 LATE5 LATE6 LATE7 ]
+"10034
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 10034:     struct {
+[s S449 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S449 . LE0 LE1 LE2 LE3 LE4 LE5 LE6 LE7 ]
+"10023
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 10023: typedef union {
+[u S447 `S448 1 `S449 1 ]
+[n S447 . . . ]
+"10045
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 10045: extern volatile LATEbits_t LATEbits __attribute__((address(0xF8D)));
+[v _LATEbits `VS447 ~T0 @X0 0 e@3981 ]
+"7319
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 7319: extern volatile unsigned char CCPR4L __attribute__((address(0xF78)));
+[v _CCPR4L `Vuc ~T0 @X0 0 e@3960 ]
+"14538
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 14538:     struct {
+[s S648 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S648 . SEN RSEN PEN RCEN ACKEN ACKDT ACKSTAT GCEN ]
+"14548
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 14548:     struct {
+[s S649 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S649 . . ADMSK1 ADMSK2 ADMSK3 ADMSK4 ADMSK5 ]
+"14556
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 14556:     struct {
+[s S650 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S650 . SEN1 ADMSK11 ADMSK21 ADMSK31 ACKEN1 ACKDT1 ACKSTAT1 GCEN1 ]
+"14566
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 14566:     struct {
+[s S651 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S651 . . RSEN1 PEN1 RCEN1 ADMSK41 ADMSK51 ]
+"14537
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 14537: typedef union {
+[u S647 `S648 1 `S649 1 `S650 1 `S651 1 ]
+[n S647 . . . . . ]
+"14575
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 14575: extern volatile SSP1CON2bits_t SSP1CON2bits __attribute__((address(0xFC5)));
+[v _SSP1CON2bits `VS647 ~T0 @X0 0 e@4037 ]
+"16025
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 16025: extern volatile unsigned char SSP1BUF __attribute__((address(0xFC9)));
+[v _SSP1BUF `Vuc ~T0 @X0 0 e@4041 ]
+"15130
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15130:     struct {
+[s S666 :2 `uc 1 :1 `uc 1 ]
+[n S666 . . R_NOT_W ]
+"15134
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15134:     struct {
+[s S667 :5 `uc 1 :1 `uc 1 ]
+[n S667 . . D_NOT_A ]
+"15138
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15138:     struct {
+[s S668 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S668 . BF UA R_nW S P D_nA CKE SMP ]
+"15148
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15148:     struct {
+[s S669 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S669 . . R . D ]
+"15154
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15154:     struct {
+[s S670 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S670 . . R_W . D_A ]
+"15160
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15160:     struct {
+[s S671 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S671 . . nW . nA ]
+"15166
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15166:     struct {
+[s S672 :2 `uc 1 :1 `uc 1 ]
+[n S672 . . NOT_WRITE ]
+"15170
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15170:     struct {
+[s S673 :5 `uc 1 :1 `uc 1 ]
+[n S673 . . NOT_ADDRESS ]
+"15174
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15174:     struct {
+[s S674 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S674 . . nWRITE . nADDRESS ]
+"15180
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15180:     struct {
+[s S675 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S675 . . READ_WRITE . DATA_ADDRESS ]
+"15186
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15186:     struct {
+[s S676 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S676 . . I2C_READ I2C_START I2C_STOP I2C_DAT ]
+"15193
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15193:     struct {
+[s S677 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S677 . BF1 UA1 RW START STOP DA CKE1 SMP1 ]
+"15203
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15203:     struct {
+[s S678 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S678 . . RW1 START1 STOP1 DA1 ]
+"15210
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15210:     struct {
+[s S679 :2 `uc 1 :1 `uc 1 ]
+[n S679 . . NOT_W ]
+"15214
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15214:     struct {
+[s S680 :5 `uc 1 :1 `uc 1 ]
+[n S680 . . NOT_A ]
+"15129
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15129: typedef union {
+[u S665 `S666 1 `S667 1 `S668 1 `S669 1 `S670 1 `S671 1 `S672 1 `S673 1 `S674 1 `S675 1 `S676 1 `S677 1 `S678 1 `S679 1 `S680 1 ]
+[n S665 . . . . . . . . . . . . . . . . ]
+"15219
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 15219: extern volatile SSP1STATbits_t SSP1STATbits __attribute__((address(0xFC7)));
+[v _SSP1STATbits `VS665 ~T0 @X0 0 e@4039 ]
+"16303
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 16303: extern volatile unsigned char TMR1H __attribute__((address(0xFCF)));
+[v _TMR1H `Vuc ~T0 @X0 0 e@4047 ]
+"16283
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 16283: extern volatile unsigned char TMR1L __attribute__((address(0xFCE)));
+[v _TMR1L `Vuc ~T0 @X0 0 e@4046 ]
+"90 C:\Program Files\Microchip\xc8\v2.32\pic\include\c99\math.h
+[; ;C:\Program Files\Microchip\xc8\v2.32\pic\include\c99\math.h: 90: float atan2f(float, float);
+[v _atan2f `(f ~T0 @X0 0 ef2`f`f ]
+"113 C:\Program Files\Microchip\xc8\v2.32\pic\include\c99\stdio.h
+[v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
+"65 Le_Jason_Project.c
+[; ;Le_Jason_Project.c: 65:     return;
+[v _UART_Write_String `(v ~T0 @X0 0 ef1`*uc ]
+"12836 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h
+[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 12836: extern volatile unsigned char TXREG1 __attribute__((address(0xFAD)));
+[v _TXREG1 `Vuc ~T0 @X0 0 e@4013 ]
 "54 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 54: __asm("PMD3 equ 0F16h");
 [; <" PMD3 equ 0F16h ;# ">
@@ -1275,768 +1508,796 @@ Version 4.0 HI-TECH Software Intermediate Code
 "17970
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f87k22.h: 17970: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"29 Le_Jason_Project.c
+"15 Le_Jason_Project.c
+[; ;Le_Jason_Project.c: 15: unsigned long time0counter = 0;
 [p x FOSC=HS1   PWRTEN=ON   BOREN=ON   BORV=2   PLLCFG=OFF ]
-"30
+"16
+[; ;Le_Jason_Project.c: 16: float CurrentTime = 0;
 [p x WDTEN=OFF   CCP2MX=PORTC   XINST=OFF ]
-"40
-[; ;Le_Jason_Project.c: 40: unsigned char Status_temp = 0x00;
+"22
+[; ;Le_Jason_Project.c: 22: void Initial(void);
+[v _TMR1X `uc ~T0 @X0 1 e ]
+[i _TMR1X
+-> -> 0 `i `uc
+]
+"23
+[; ;Le_Jason_Project.c: 23: 
+[v _CCPR1X `uc ~T0 @X0 1 e ]
+[i _CCPR1X
+-> -> 0 `i `uc
+]
+"24
+[; ;Le_Jason_Project.c: 24: void CCP1handler(void);
+[v _TMR3X `uc ~T0 @X0 1 e ]
+[i _TMR3X
+-> -> 0 `i `uc
+]
+"25
+[; ;Le_Jason_Project.c: 25: void CCP4handler(void);
+[v _CCPR4X `uc ~T0 @X0 1 e ]
+[i _CCPR4X
+-> -> 0 `i `uc
+]
+"26
+[; ;Le_Jason_Project.c: 26: void TMR1handler(void);
 [v _Status_temp `uc ~T0 @X0 1 e ]
 [i _Status_temp
 -> -> 0 `i `uc
 ]
-"41
-[; ;Le_Jason_Project.c: 41: unsigned char Wreg_temp = 0x00;
+"27
+[; ;Le_Jason_Project.c: 27: void TMR3handler(void);
 [v _Wreg_temp `uc ~T0 @X0 1 e ]
 [i _Wreg_temp
 -> -> 0 `i `uc
 ]
-"42
-[; ;Le_Jason_Project.c: 42: unsigned char BSR_temp = 0x00;
+"28
+[; ;Le_Jason_Project.c: 28: void Servo1(unsigned int angle);
 [v _BSR_temp `uc ~T0 @X0 1 e ]
 [i _BSR_temp
 -> -> 0 `i `uc
 ]
-"43
-[; ;Le_Jason_Project.c: 43: unsigned int angle = 0;
-[v _angle `ui ~T0 @X0 1 e ]
-[i _angle
--> -> 0 `i `ui
+"29
+[; ;Le_Jason_Project.c: 29: void Servo2(unsigned int angle);
+[v _Servo1_on `ul ~T0 @X0 1 e ]
+[i _Servo1_on
+-> -> -> 4000 `i `l `ul
+]
+"30
+[; ;Le_Jason_Project.c: 30: 
+[v _Servo1_off `ul ~T0 @X0 1 e ]
+[i _Servo1_off
+-> -> 76000 `l `ul
+]
+"31
+[; ;Le_Jason_Project.c: 31: void I2C_Master_Wait(void);
+[v _Servo2_on `ul ~T0 @X0 1 e ]
+[i _Servo2_on
+-> -> -> 4000 `i `l `ul
+]
+"32
+[; ;Le_Jason_Project.c: 32: void I2C_Master_Start(void);
+[v _Servo2_off `ul ~T0 @X0 1 e ]
+[i _Servo2_off
+-> -> 76000 `l `ul
+]
+"33
+[; ;Le_Jason_Project.c: 33: void I2C_Start(char add);
+[v _time0counter `ul ~T0 @X0 1 e ]
+[i _time0counter
+-> -> -> 0 `i `l `ul
+]
+"34
+[; ;Le_Jason_Project.c: 34: void I2C_Master_RepeatedStart(void);
+[v _CurrentTime `f ~T0 @X0 1 e ]
+[i _CurrentTime
+-> -> 0 `i `f
+]
+"35
+[; ;Le_Jason_Project.c: 35: void I2C_Master_Stop(void);
+[v _previousTime `f ~T0 @X0 1 e ]
+[i _previousTime
+-> -> 0 `i `f
+]
+"36
+[; ;Le_Jason_Project.c: 36: void I2C_ACK(void);
+[v _GyroAngleX `f ~T0 @X0 1 e ]
+[i _GyroAngleX
+-> -> 0 `i `f
+]
+"37
+[; ;Le_Jason_Project.c: 37: void I2C_NACK(void);
+[v _GyroAngleY `f ~T0 @X0 1 e ]
+[i _GyroAngleY
+-> -> 0 `i `f
+]
+"38
+[; ;Le_Jason_Project.c: 38: unsigned char I2C_Master_Write(unsigned char data);
+[v _yaw `f ~T0 @X0 1 e ]
+[i _yaw
+-> -> 0 `i `f
 ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"76
-[; ;Le_Jason_Project.c: 76: void main(void) {
+"70
+[; ;Le_Jason_Project.c: 70:     TRISC = 0x00;
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"77
-[; ;Le_Jason_Project.c: 77:     Initial();
+"71
+[; ;Le_Jason_Project.c: 71:     LATC = 0x00;
 [e ( _Initial ..  ]
-"78
-[; ;Le_Jason_Project.c: 78:     InitialIMU();
-[e ( _InitialIMU ..  ]
-"79
-[; ;Le_Jason_Project.c: 79:     while(1){
+"72
+[; ;Le_Jason_Project.c: 72:     TRISD = 0x00;
+[e ( _Servo1 (1 -> -> 45 `i `ui ]
+"73
+[; ;Le_Jason_Project.c: 73:     LATD = 0x00;
+[e ( _Servo2 (1 -> -> 45 `i `ui ]
+"74
+[; ;Le_Jason_Project.c: 74:     TRISE = 0x00;
 [e :U 833 ]
 {
+"75
+[; ;Le_Jason_Project.c: 75:     LATE = 0x00;
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 180 `i ]
+[e $ >= _i -> 0 `i 835  ]
+[e $U 836  ]
+[e :U 835 ]
+{
+"78
+[; ;Le_Jason_Project.c: 78:     RCONbits.IPEN = 1;
+[e ( _MPU6050_Read ..  ]
+"79
+[; ;Le_Jason_Project.c: 79:     INTCONbits.GIEL = 1;
+[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
 "80
-[; ;Le_Jason_Project.c: 80:         angle = 0;
-[e = _angle -> -> 0 `i `ui ]
-"81
-[; ;Le_Jason_Project.c: 81:         _delay((unsigned long)((1000)*(16000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
+[; ;Le_Jason_Project.c: 80:     INTCONbits.GIEH = 1;
+}
+[e -- _i -> 1 `i ]
+[e $ >= _i -> 0 `i 835  ]
+[e :U 836 ]
+}
 "82
-[; ;Le_Jason_Project.c: 82:         angle = 1;
-[e = _angle -> -> 1 `i `ui ]
-"83
-[; ;Le_Jason_Project.c: 83:         _delay((unsigned long)((1000)*(16000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
-"84
-[; ;Le_Jason_Project.c: 84:         IMURead();
-[e ( _IMURead ..  ]
-"85
-[; ;Le_Jason_Project.c: 85:     }
+[; ;Le_Jason_Project.c: 82: 
 }
 [e :U 832 ]
 [e $U 833  ]
 [e :U 834 ]
-"86
-[; ;Le_Jason_Project.c: 86:     return;
+"83
+[; ;Le_Jason_Project.c: 83:     T1CON = 0b00000010;
 [e $UE 831  ]
-"87
-[; ;Le_Jason_Project.c: 87: }
+"84
+[; ;Le_Jason_Project.c: 84:     CCP1CON = 0b00001000;
 [e :UE 831 ]
 }
-"88
-[; ;Le_Jason_Project.c: 88: void Initial(void){
+"86
+[; ;Le_Jason_Project.c: 86:     IPR1bits.TMR1IP = 0;
 [v _Initial `(v ~T0 @X0 1 ef ]
 {
 [e :U _Initial ]
 [f ]
+"88
+[; ;Le_Jason_Project.c: 88:     PIE3bits.CCP1IE = 1;
+[e = _TRISC -> -> 0 `i `uc ]
 "89
-[; ;Le_Jason_Project.c: 89:     InitialPorts();
-[e ( _InitialPorts ..  ]
+[; ;Le_Jason_Project.c: 89:     PIE1bits.TMR1IE = 1;
+[e = _LATC -> -> 0 `i `uc ]
 "90
-[; ;Le_Jason_Project.c: 90:     InitialPrio();
-[e ( _InitialPrio ..  ]
-"91
-[; ;Le_Jason_Project.c: 91: }
-[e :UE 835 ]
-}
-"93
-[; ;Le_Jason_Project.c: 93: void IMURead(void){
-[v _IMURead `(v ~T0 @X0 1 ef ]
-{
-[e :U _IMURead ]
-[f ]
-"94
-[; ;Le_Jason_Project.c: 94:     int Az;
-[v _Az `i ~T0 @X0 1 a ]
-"95
-[; ;Le_Jason_Project.c: 95:     I2C_Start(0x28);
-[e ( _I2C_Start (1 -> -> 40 `i `uc ]
-"96
-[; ;Le_Jason_Project.c: 96:     I2C_Master_Write(0x0D);
-[e ( _I2C_Master_Write (1 -> -> 13 `i `uc ]
-"97
-[; ;Le_Jason_Project.c: 97:     Az = (int)I2C_Read(0);
-[e = _Az -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
-"99
-[; ;Le_Jason_Project.c: 99: }
-[e :UE 836 ]
-}
-"101
-[; ;Le_Jason_Project.c: 101: void InitialPorts(void){
-[v _InitialPorts `(v ~T0 @X0 1 ef ]
-{
-[e :U _InitialPorts ]
-[f ]
-"102
-[; ;Le_Jason_Project.c: 102:     TRISD = 0x00;
+[; ;Le_Jason_Project.c: 90:     CCPR1X = (Servo1_on & 0xFF0000)/65536;
 [e = _TRISD -> -> 0 `i `uc ]
-"103
-[; ;Le_Jason_Project.c: 103:     LATD = 0x00;
+"91
+[; ;Le_Jason_Project.c: 91: 
 [e = _LATD -> -> 0 `i `uc ]
-"104
-[; ;Le_Jason_Project.c: 104:     TRISE = 0x00;
+"92
+[; ;Le_Jason_Project.c: 92: 
 [e = _TRISE -> -> 0 `i `uc ]
-"105
-[; ;Le_Jason_Project.c: 105:     LATE = 0x00;
+"93
+[; ;Le_Jason_Project.c: 93:     T3CON = 0b00000010;
 [e = _LATE -> -> 0 `i `uc ]
-"106
-[; ;Le_Jason_Project.c: 106: }
-[e :UE 837 ]
-}
-"108
-[; ;Le_Jason_Project.c: 108: void InitialPrio(void){
-[v _InitialPrio `(v ~T0 @X0 1 ef ]
-{
-[e :U _InitialPrio ]
-[f ]
-"109
-[; ;Le_Jason_Project.c: 109:     RCONbits.IPEN = 1;
+"96
+[; ;Le_Jason_Project.c: 96:     IPR2bits.TMR3IP = 0;
 [e = . . _RCONbits 6 7 -> -> 1 `i `uc ]
-"110
-[; ;Le_Jason_Project.c: 110:     INTCONbits.GIEL = 1;
+"97
+[; ;Le_Jason_Project.c: 97:     IPR4bits.CCP4IP = 0;
 [e = . . _INTCONbits 2 1 -> -> 1 `i `uc ]
-"111
-[; ;Le_Jason_Project.c: 111:     INTCONbits.GIEH = 1;
+"98
+[; ;Le_Jason_Project.c: 98:     PIE4bits.CCP4IE = 1;
 [e = . . _INTCONbits 2 2 -> -> 1 `i `uc ]
+"101
+[; ;Le_Jason_Project.c: 101: 
+[e = _T1CON -> -> 2 `i `uc ]
+"102
+[; ;Le_Jason_Project.c: 102: 
+[e = _CCP1CON -> -> 8 `i `uc ]
+"103
+[; ;Le_Jason_Project.c: 103: 
+[e = _CCPTMRS0 -> -> 0 `i `uc ]
+"104
+[; ;Le_Jason_Project.c: 104: 
+[e = . . _IPR1bits 0 0 -> -> 0 `i `uc ]
+"105
+[; ;Le_Jason_Project.c: 105: 
+[e = . . _IPR3bits 0 1 -> -> 0 `i `uc ]
+"106
+[; ;Le_Jason_Project.c: 106: 
+[e = . . _PIE3bits 0 1 -> -> 1 `i `uc ]
+"107
+[; ;Le_Jason_Project.c: 107: 
+[e = . . _PIE1bits 0 0 -> -> 1 `i `uc ]
+"108
+[; ;Le_Jason_Project.c: 108:     SSP1CON1 = 0x28;
+[e = _CCPR1X -> / & _Servo1_on -> -> 16711680 `l `ul -> -> 65536 `l `ul `uc ]
+"111
+[; ;Le_Jason_Project.c: 111:     SSP1ADD = ((16000000/4)/100000) - 1;
+[e = _T3CON -> -> 2 `i `uc ]
+"112
+[; ;Le_Jason_Project.c: 112:     TRISCbits.TRISC3 = 1;
+[e = _CCP4CON -> -> 8 `i `uc ]
+"113
+[; ;Le_Jason_Project.c: 113:     TRISCbits.TRISC4 = 1;
+[e = _CCPTMRS1 -> -> 1 `i `uc ]
 "114
-[; ;Le_Jason_Project.c: 114:     INTCON2bits.TMR0IP = 0;
-[e = . . _INTCON2bits 1 2 -> -> 0 `i `uc ]
+[; ;Le_Jason_Project.c: 114: 
+[e = . . _IPR2bits 0 1 -> -> 0 `i `uc ]
 "115
-[; ;Le_Jason_Project.c: 115:     INTCONbits.TMR0IE = 1;
-[e = . . _INTCONbits 0 5 -> -> 1 `i `uc ]
+[; ;Le_Jason_Project.c: 115: 
+[e = . . _IPR4bits 0 1 -> -> 0 `i `uc ]
 "116
-[; ;Le_Jason_Project.c: 116:     T0CON = 0b00001000;
-[e = _T0CON -> -> 8 `i `uc ]
+[; ;Le_Jason_Project.c: 116:     _delay((unsigned long)((100)*(16000000/4000.0)));
+[e = . . _PIE4bits 0 1 -> -> 1 `i `uc ]
 "117
-[; ;Le_Jason_Project.c: 117:     TMR0H = 0xF0;
-[e = _TMR0H -> -> 240 `i `uc ]
+[; ;Le_Jason_Project.c: 117: 
+[e = . . _PIE2bits 0 1 -> -> 1 `i `uc ]
 "118
-[; ;Le_Jason_Project.c: 118:     TMR0L = 0x60;
-[e = _TMR0L -> -> 96 `i `uc ]
-"119
-[; ;Le_Jason_Project.c: 119:     T0CONbits.TMR0ON = 1;
-[e = . . _T0CONbits 0 5 -> -> 1 `i `uc ]
-"120
-[; ;Le_Jason_Project.c: 120: }
-[e :UE 838 ]
-}
-"122
-[; ;Le_Jason_Project.c: 122: void InitialIMU(void){
-[v _InitialIMU `(v ~T0 @X0 1 ef ]
-{
-[e :U _InitialIMU ]
-[f ]
-"123
-[; ;Le_Jason_Project.c: 123:     _delay((unsigned long)((100)*(16000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
-"124
-[; ;Le_Jason_Project.c: 124:     I2C_Master_Init();
-[e ( _I2C_Master_Init ..  ]
-"125
-[; ;Le_Jason_Project.c: 125:     I2C_Start(0x28);
-[e ( _I2C_Start (1 -> -> 40 `i `uc ]
+[; ;Le_Jason_Project.c: 118: 
+[e = _CCPR4X -> / & _Servo2_on -> -> 16711680 `l `ul -> -> 65536 `l `ul `uc ]
 "126
-[; ;Le_Jason_Project.c: 126:     I2C_Master_Write(0x12);
-[e ( _I2C_Master_Write (1 -> -> 18 `i `uc ]
+[; ;Le_Jason_Project.c: 126:     I2C_Master_Write(0x6B);
+[e = _SSP1CON1 -> -> 40 `i `uc ]
 "127
-[; ;Le_Jason_Project.c: 127:     I2C_Master_Write(0x03);
-[e ( _I2C_Master_Write (1 -> -> 3 `i `uc ]
+[; ;Le_Jason_Project.c: 127:     I2C_Master_Write(0x01);
+[e = _SSP1CON2 -> -> 0 `i `uc ]
 "128
 [; ;Le_Jason_Project.c: 128:     I2C_Master_Stop();
-[e ( _I2C_Master_Stop ..  ]
-"130
-[; ;Le_Jason_Project.c: 130: }
-[e :UE 839 ]
-}
-"132
-[; ;Le_Jason_Project.c: 132: void I2C_Master_Init(void){
-[v _I2C_Master_Init `(v ~T0 @X0 1 ef ]
-{
-[e :U _I2C_Master_Init ]
-[f ]
-"133
-[; ;Le_Jason_Project.c: 133:     SSP1CON1 = 0x28;
-[e = _SSP1CON1 -> -> 40 `i `uc ]
-"134
-[; ;Le_Jason_Project.c: 134:     SSP1CON2 = 0x00;
-[e = _SSP1CON2 -> -> 0 `i `uc ]
-"135
-[; ;Le_Jason_Project.c: 135:     SSP1STAT = 0x00;
 [e = _SSP1STAT -> -> 0 `i `uc ]
-"136
-[; ;Le_Jason_Project.c: 136:     SSP1ADD = ((16000000/4)/100000) - 1;
+"129
+[; ;Le_Jason_Project.c: 129: 
 [e = _SSP1ADD -> - / / -> 16000000 `l -> -> 4 `i `l -> 100000 `l -> -> 1 `i `l `uc ]
-"137
-[; ;Le_Jason_Project.c: 137:     TRISCbits.TRISC3 = 1;
+"130
+[; ;Le_Jason_Project.c: 130: 
 [e = . . _TRISCbits 0 3 -> -> 1 `i `uc ]
-"138
-[; ;Le_Jason_Project.c: 138:     TRISCbits.TRISC4 = 1;
+"131
+[; ;Le_Jason_Project.c: 131:     I2C_Start(0xD0);
 [e = . . _TRISCbits 0 4 -> -> 1 `i `uc ]
+"134
+[; ;Le_Jason_Project.c: 134:     I2C_Master_Stop();
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
+"137
+[; ;Le_Jason_Project.c: 137:     I2C_Start(0xD0);
+[e ( _I2C_Start (1 -> -> 208 `i `uc ]
+"138
+[; ;Le_Jason_Project.c: 138:     I2C_Master_Write(0x1C);
+[e ( _I2C_Master_Write (1 -> -> 25 `i `uc ]
 "139
-[; ;Le_Jason_Project.c: 139: }
-[e :UE 840 ]
-}
-"141
-[; ;Le_Jason_Project.c: 141: void I2C_Master_Wait(void){
-[v _I2C_Master_Wait `(v ~T0 @X0 1 ef ]
-{
-[e :U _I2C_Master_Wait ]
-[f ]
-"142
-[; ;Le_Jason_Project.c: 142:     while((SSP1STAT & 0x04)||(SSP1CON2 & 0x1F)){
-[e $U 842  ]
-[e :U 843 ]
-{
+[; ;Le_Jason_Project.c: 139:     I2C_Master_Write(0x00);
+[e ( _I2C_Master_Write (1 -> -> 7 `i `uc ]
+"140
+[; ;Le_Jason_Project.c: 140:     I2C_Master_Stop();
+[e ( _I2C_Master_Stop ..  ]
 "143
-[; ;Le_Jason_Project.c: 143:     }
-}
-[e :U 842 ]
-"142
-[; ;Le_Jason_Project.c: 142:     while((SSP1STAT & 0x04)||(SSP1CON2 & 0x1F)){
-[e $ || != & -> _SSP1STAT `i -> 4 `i -> 0 `i != & -> _SSP1CON2 `i -> 31 `i -> 0 `i 843  ]
-[e :U 844 ]
+[; ;Le_Jason_Project.c: 143:     I2C_Start(0xD0);
+[e ( _I2C_Start (1 -> -> 208 `i `uc ]
 "144
-[; ;Le_Jason_Project.c: 144: }
-[e :UE 841 ]
-}
+[; ;Le_Jason_Project.c: 144:     I2C_Master_Write(0x1B);
+[e ( _I2C_Master_Write (1 -> -> 107 `i `uc ]
+"145
+[; ;Le_Jason_Project.c: 145:     I2C_Master_Write(0x18);
+[e ( _I2C_Master_Write (1 -> -> 1 `i `uc ]
 "146
-[; ;Le_Jason_Project.c: 146: void I2C_Master_Start(void){
-[v _I2C_Master_Start `(v ~T0 @X0 1 ef ]
-{
-[e :U _I2C_Master_Start ]
-[f ]
-"147
-[; ;Le_Jason_Project.c: 147:     I2C_Master_Wait();
-[e ( _I2C_Master_Wait ..  ]
-"148
-[; ;Le_Jason_Project.c: 148:     SSP1CON2bits.SEN = 1;
-[e = . . _SSP1CON2bits 0 0 -> -> 1 `i `uc ]
+[; ;Le_Jason_Project.c: 146:     I2C_Master_Stop();
+[e ( _I2C_Master_Stop ..  ]
 "149
-[; ;Le_Jason_Project.c: 149: }
-[e :UE 845 ]
-}
+[; ;Le_Jason_Project.c: 149:     I2C_Start(0xD0);
+[e ( _I2C_Start (1 -> -> 208 `i `uc ]
+"150
+[; ;Le_Jason_Project.c: 150:     I2C_Master_Write(0x56);
+[e ( _I2C_Master_Write (1 -> -> 26 `i `uc ]
 "151
-[; ;Le_Jason_Project.c: 151: void I2C_Start(char add){
-[v _I2C_Start `(v ~T0 @X0 1 ef1`uc ]
-{
-[e :U _I2C_Start ]
-[v _add `uc ~T0 @X0 1 r1 ]
-[f ]
+[; ;Le_Jason_Project.c: 151:     I2C_Master_Write(0x01);
+[e ( _I2C_Master_Write (1 -> -> 0 `i `uc ]
 "152
-[; ;Le_Jason_Project.c: 152:     I2C_Master_Wait();
-[e ( _I2C_Master_Wait ..  ]
-"153
-[; ;Le_Jason_Project.c: 153:     SSP1CON2bits.SEN = 1;
-[e = . . _SSP1CON2bits 0 0 -> -> 1 `i `uc ]
-"154
-[; ;Le_Jason_Project.c: 154:     I2C_Master_Write(add);
-[e ( _I2C_Master_Write (1 -> _add `uc ]
+[; ;Le_Jason_Project.c: 152:     I2C_Master_Stop();
+[e ( _I2C_Master_Stop ..  ]
 "155
-[; ;Le_Jason_Project.c: 155: }
-[e :UE 846 ]
-}
+[; ;Le_Jason_Project.c: 155:     TRISCbits.TRISC7 = 1;
+[e ( _I2C_Start (1 -> -> 208 `i `uc ]
+"156
+[; ;Le_Jason_Project.c: 156:     TRISCbits.TRISC6 = 0;
+[e ( _I2C_Master_Write (1 -> -> 28 `i `uc ]
 "157
-[; ;Le_Jason_Project.c: 157: void I2C_Master_RepeatedStart(){
-[v _I2C_Master_RepeatedStart `(v ~T0 @X0 1 ef ]
-{
-[e :U _I2C_Master_RepeatedStart ]
-[f ]
+[; ;Le_Jason_Project.c: 157:     BAUDCON1bits.BRG16 = 0;
+[e ( _I2C_Master_Write (1 -> -> 0 `i `uc ]
 "158
-[; ;Le_Jason_Project.c: 158:     I2C_Master_Wait();
-[e ( _I2C_Master_Wait ..  ]
-"159
-[; ;Le_Jason_Project.c: 159:     SSP1CON2bits.RSEN = 1;
-[e = . . _SSP1CON2bits 0 1 -> -> 1 `i `uc ]
-"160
-[; ;Le_Jason_Project.c: 160: }
-[e :UE 847 ]
-}
+[; ;Le_Jason_Project.c: 158:     BAUDCON1bits.RCIDL = 1;
+[e ( _I2C_Master_Stop ..  ]
+"161
+[; ;Le_Jason_Project.c: 161:     TXSTA1bits.BRGH = 0;
+[e ( _I2C_Start (1 -> -> 208 `i `uc ]
 "162
-[; ;Le_Jason_Project.c: 162: void I2C_Master_Stop(){
-[v _I2C_Master_Stop `(v ~T0 @X0 1 ef ]
-{
-[e :U _I2C_Master_Stop ]
-[f ]
+[; ;Le_Jason_Project.c: 162:     TXSTA1bits.TX9 = 0;
+[e ( _I2C_Master_Write (1 -> -> 27 `i `uc ]
 "163
-[; ;Le_Jason_Project.c: 163:     I2C_Master_Wait();
-[e ( _I2C_Master_Wait ..  ]
+[; ;Le_Jason_Project.c: 163:     TXSTA1bits.TXEN = 1;
+[e ( _I2C_Master_Write (1 -> -> 24 `i `uc ]
 "164
-[; ;Le_Jason_Project.c: 164:     SSP1CON2bits.PEN = 1;
-[e = . . _SSP1CON2bits 0 2 -> -> 1 `i `uc ]
-"165
-[; ;Le_Jason_Project.c: 165: }
-[e :UE 848 ]
-}
-"166
-[; ;Le_Jason_Project.c: 166: void I2C_ACK(void){
-[v _I2C_ACK `(v ~T0 @X0 1 ef ]
-{
-[e :U _I2C_ACK ]
-[f ]
+[; ;Le_Jason_Project.c: 164:     RCSTA1bits.SPEN = 1;
+[e ( _I2C_Master_Stop ..  ]
 "167
-[; ;Le_Jason_Project.c: 167:     SSP1CON2bits.ACKDT = 0;
-[e = . . _SSP1CON2bits 0 5 -> -> 0 `i `uc ]
+[; ;Le_Jason_Project.c: 167:     PIE1bits.RC1IE = 1;
+[e ( _I2C_Start (1 -> -> 208 `i `uc ]
 "168
-[; ;Le_Jason_Project.c: 168:     SSP1CON2bits.ACKEN = 1;
-[e = . . _SSP1CON2bits 0 4 -> -> 1 `i `uc ]
+[; ;Le_Jason_Project.c: 168: 
+[e ( _I2C_Master_Write (1 -> -> 86 `i `uc ]
 "169
-[; ;Le_Jason_Project.c: 169:     while(SSP1CON2bits.ACKEN){
-[e $U 850  ]
-[e :U 851 ]
-{
+[; ;Le_Jason_Project.c: 169: 
+[e ( _I2C_Master_Write (1 -> -> 1 `i `uc ]
 "170
-[; ;Le_Jason_Project.c: 170:     }
-}
-[e :U 850 ]
-"169
-[; ;Le_Jason_Project.c: 169:     while(SSP1CON2bits.ACKEN){
-[e $ != -> . . _SSP1CON2bits 0 4 `i -> 0 `i 851  ]
-[e :U 852 ]
-"171
-[; ;Le_Jason_Project.c: 171: }
-[e :UE 849 ]
-}
+[; ;Le_Jason_Project.c: 170:     T0CONbits.TMR0ON = 1;
+[e ( _I2C_Master_Stop ..  ]
 "173
-[; ;Le_Jason_Project.c: 173: void I2C_NACK(void){
-[v _I2C_NACK `(v ~T0 @X0 1 ef ]
-{
-[e :U _I2C_NACK ]
-[f ]
-"174
-[; ;Le_Jason_Project.c: 174:     SSP1CON2bits.ACKDT = 1;
-[e = . . _SSP1CON2bits 0 5 -> -> 1 `i `uc ]
-"175
-[; ;Le_Jason_Project.c: 175:     SSP1CON2bits.ACKEN = 1;
-[e = . . _SSP1CON2bits 0 4 -> -> 1 `i `uc ]
-"176
-[; ;Le_Jason_Project.c: 176:     while(SSP1CON2bits.ACKEN){
-[e $U 854  ]
-[e :U 855 ]
-{
-"177
-[; ;Le_Jason_Project.c: 177:     }
-}
-[e :U 854 ]
-"176
-[; ;Le_Jason_Project.c: 176:     while(SSP1CON2bits.ACKEN){
-[e $ != -> . . _SSP1CON2bits 0 4 `i -> 0 `i 855  ]
-[e :U 856 ]
-"178
-[; ;Le_Jason_Project.c: 178: }
-[e :UE 853 ]
-}
-"180
-[; ;Le_Jason_Project.c: 180: unsigned char I2C_Master_Write(unsigned char data){
-[v _I2C_Master_Write `(uc ~T0 @X0 1 ef1`uc ]
-{
-[e :U _I2C_Master_Write ]
-[v _data `uc ~T0 @X0 1 r1 ]
-[f ]
-"181
-[; ;Le_Jason_Project.c: 181:     I2C_Master_Wait();
-[e ( _I2C_Master_Wait ..  ]
-"182
-[; ;Le_Jason_Project.c: 182:     SSP1BUF = data;
-[e = _SSP1BUF _data ]
-"183
-[; ;Le_Jason_Project.c: 183:     while(!SSP1IF){
-[e $U 858  ]
-[e :U 859 ]
-{
-"184
-[; ;Le_Jason_Project.c: 184:     }
-}
-[e :U 858 ]
-"183
-[; ;Le_Jason_Project.c: 183:     while(!SSP1IF){
-[e $ ! _SSP1IF 859  ]
-[e :U 860 ]
-"185
-[; ;Le_Jason_Project.c: 185:     SSP1IF = 0;
-[e = _SSP1IF -> -> 0 `i `b ]
-"186
-[; ;Le_Jason_Project.c: 186:     return SSP1CON2bits.ACKSTAT;
-[e ) . . _SSP1CON2bits 0 6 ]
-[e $UE 857  ]
-"187
-[; ;Le_Jason_Project.c: 187: }
-[e :UE 857 ]
-}
-"189
-[; ;Le_Jason_Project.c: 189: unsigned char I2C_Read_Byte(void){
-[v _I2C_Read_Byte `(uc ~T0 @X0 1 ef ]
-{
-[e :U _I2C_Read_Byte ]
-[f ]
-"190
-[; ;Le_Jason_Project.c: 190:     I2C_Master_Wait();
-[e ( _I2C_Master_Wait ..  ]
-"191
-[; ;Le_Jason_Project.c: 191:     SSP1CON2bits.RCEN = 1;
-[e = . . _SSP1CON2bits 0 3 -> -> 1 `i `uc ]
-"192
-[; ;Le_Jason_Project.c: 192:     while(!SSP1IF){
-[e $U 862  ]
-[e :U 863 ]
-{
-"193
-[; ;Le_Jason_Project.c: 193:     }
-}
-[e :U 862 ]
-"192
-[; ;Le_Jason_Project.c: 192:     while(!SSP1IF){
-[e $ ! _SSP1IF 863  ]
-[e :U 864 ]
-"194
-[; ;Le_Jason_Project.c: 194:     SSP1IF = 0;
-[e = _SSP1IF -> -> 0 `i `b ]
-"195
-[; ;Le_Jason_Project.c: 195:     I2C_Master_Wait();
-[e ( _I2C_Master_Wait ..  ]
-"196
-[; ;Le_Jason_Project.c: 196:     return SSP1BUF;
-[e ) _SSP1BUF ]
-[e $UE 861  ]
-"197
-[; ;Le_Jason_Project.c: 197: }
-[e :UE 861 ]
-}
-"199
-[; ;Le_Jason_Project.c: 199: unsigned char I2C_Read(unsigned char ACK_NACK){
-[v _I2C_Read `(uc ~T0 @X0 1 ef1`uc ]
-{
-[e :U _I2C_Read ]
-[v _ACK_NACK `uc ~T0 @X0 1 r1 ]
-[f ]
-"200
-[; ;Le_Jason_Project.c: 200:     unsigned char Data;
-[v _Data `uc ~T0 @X0 1 a ]
-"201
-[; ;Le_Jason_Project.c: 201:     SSP1CON2bits.RCEN = 1;
-[e = . . _SSP1CON2bits 0 3 -> -> 1 `i `uc ]
-"202
-[; ;Le_Jason_Project.c: 202:     while(!SSP1STATbits.BF){
-[e $U 866  ]
-[e :U 867 ]
-{
-"203
-[; ;Le_Jason_Project.c: 203:     }
-}
-[e :U 866 ]
-"202
-[; ;Le_Jason_Project.c: 202:     while(!SSP1STATbits.BF){
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> 0 `i 867  ]
-[e :U 868 ]
-"204
-[; ;Le_Jason_Project.c: 204:     Data = SSP1BUF;
-[e = _Data _SSP1BUF ]
-"205
-[; ;Le_Jason_Project.c: 205:     if(ACK_NACK == 0){
-[e $ ! == -> _ACK_NACK `i -> 0 `i 869  ]
-{
-"206
-[; ;Le_Jason_Project.c: 206:         I2C_ACK();
-[e ( _I2C_ACK ..  ]
-"207
-[; ;Le_Jason_Project.c: 207:     }
-}
-[e $U 870  ]
-"208
-[; ;Le_Jason_Project.c: 208:     else{
-[e :U 869 ]
-{
-"209
-[; ;Le_Jason_Project.c: 209:         I2C_NACK();
-[e ( _I2C_NACK ..  ]
-"210
-[; ;Le_Jason_Project.c: 210:     }
-}
-[e :U 870 ]
-"211
-[; ;Le_Jason_Project.c: 211:     while(!SSP1IF){
-[e $U 871  ]
-[e :U 872 ]
-{
-"212
-[; ;Le_Jason_Project.c: 212:     }
-}
-[e :U 871 ]
-"211
-[; ;Le_Jason_Project.c: 211:     while(!SSP1IF){
-[e $ ! _SSP1IF 872  ]
-[e :U 873 ]
-"213
-[; ;Le_Jason_Project.c: 213:     SSP1IF = 0;
-[e = _SSP1IF -> -> 0 `i `b ]
-"214
-[; ;Le_Jason_Project.c: 214:     return Data;
-[e ) _Data ]
-[e $UE 865  ]
-"215
-[; ;Le_Jason_Project.c: 215: }
-[e :UE 865 ]
-}
-"217
-[; ;Le_Jason_Project.c: 217: void usartIntial(void){
-[v _usartIntial `(v ~T0 @X0 1 ef ]
-{
-[e :U _usartIntial ]
-[f ]
-"219
-[; ;Le_Jason_Project.c: 219:     TRISCbits.TRISC7 = 1;
+[; ;Le_Jason_Project.c: 173: 
 [e = . . _TRISCbits 0 7 -> -> 1 `i `uc ]
-"220
-[; ;Le_Jason_Project.c: 220:     TRISCbits.TRISC6 = 0;
+"174
+[; ;Le_Jason_Project.c: 174: }
 [e = . . _TRISCbits 0 6 -> -> 0 `i `uc ]
-"221
-[; ;Le_Jason_Project.c: 221:     BAUDCON1bits.BRG16 = 0;
+"175
+[; ;Le_Jason_Project.c: 175: 
 [e = . . _BAUDCON1bits 0 3 -> -> 0 `i `uc ]
-"222
-[; ;Le_Jason_Project.c: 222:     BAUDCON1bits.RCIDL = 1;
+"176
+[; ;Le_Jason_Project.c: 176: void __attribute__((picinterrupt(("")))) HiPriISR (void){
 [e = . . _BAUDCON1bits 0 6 -> -> 1 `i `uc ]
-"223
-[; ;Le_Jason_Project.c: 223:     SPBRG1 = 12;
+"177
+[; ;Le_Jason_Project.c: 177:     while(1){
 [e = _SPBRG1 -> -> 12 `i `uc ]
-"224
-[; ;Le_Jason_Project.c: 224:     SPBRGH1 = 0x00;
+"178
+[; ;Le_Jason_Project.c: 178: 
 [e = _SPBRGH1 -> -> 0 `i `uc ]
-"225
-[; ;Le_Jason_Project.c: 225:     TXSTA1bits.BRGH = 0;
+"179
+[; ;Le_Jason_Project.c: 179: 
 [e = . . _TXSTA1bits 0 2 -> -> 0 `i `uc ]
-"226
-[; ;Le_Jason_Project.c: 226:     TXSTA1bits.TX9 = 0;
+"180
+[; ;Le_Jason_Project.c: 180: 
 [e = . . _TXSTA1bits 0 6 -> -> 0 `i `uc ]
-"227
-[; ;Le_Jason_Project.c: 227:     TXSTA1bits.TXEN = 1;
+"181
+[; ;Le_Jason_Project.c: 181: 
 [e = . . _TXSTA1bits 0 5 -> -> 1 `i `uc ]
-"228
-[; ;Le_Jason_Project.c: 228:     RCSTA1bits.SPEN = 1;
+"182
+[; ;Le_Jason_Project.c: 182:     break;
 [e = . . _RCSTA1bits 0 7 -> -> 1 `i `uc ]
-"229
-[; ;Le_Jason_Project.c: 229:     RCSTA1bits.CREN = 1;
+"183
+[; ;Le_Jason_Project.c: 183:     }
 [e = . . _RCSTA1bits 0 4 -> -> 1 `i `uc ]
-"231
-[; ;Le_Jason_Project.c: 231:     IPR1bits.RC1IP = 0;
+"184
+[; ;Le_Jason_Project.c: 184:     return;
 [e = . . _IPR1bits 0 5 -> -> 0 `i `uc ]
-"232
-[; ;Le_Jason_Project.c: 232:     PIE1bits.RC1IE = 1;
+"185
+[; ;Le_Jason_Project.c: 185: }
 [e = . . _PIE1bits 0 5 -> -> 1 `i `uc ]
-"233
-[; ;Le_Jason_Project.c: 233: }
-[e :UE 874 ]
-}
-"235
-[; ;Le_Jason_Project.c: 235: void TMR0Config(unsigned int angle){
-[v _TMR0Config `(v ~T0 @X0 1 ef1`ui ]
-{
-[e :U _TMR0Config ]
-[v _angle `ui ~T0 @X0 1 r1 ]
-[f ]
-"236
-[; ;Le_Jason_Project.c: 236:     unsigned int temp = 0;
-[v _temp `ui ~T0 @X0 1 a ]
-[e = _temp -> -> 0 `i `ui ]
-"237
-[; ;Le_Jason_Project.c: 237:     if(LATDbits.LATD1 == 0){
-[e $ ! == -> . . _LATDbits 0 1 `i -> 0 `i 876  ]
-{
-"238
-[; ;Le_Jason_Project.c: 238:         T0CON = 0b00001000;
-[e = _T0CON -> -> 8 `i `uc ]
-"239
-[; ;Le_Jason_Project.c: 239:         TMR0H = 0xF0 - angle*0x0F;
-[e = _TMR0H -> - -> -> 240 `i `ui * _angle -> -> 15 `i `ui `uc ]
-"240
-[; ;Le_Jason_Project.c: 240:         TMR0L = 0x60 - angle*0xA0;
-[e = _TMR0L -> - -> -> 96 `i `ui * _angle -> -> 160 `i `ui `uc ]
-"242
-[; ;Le_Jason_Project.c: 242:         temp = 1;
-[e = _temp -> -> 1 `i `ui ]
-"243
-[; ;Le_Jason_Project.c: 243:         LATDbits.LATD1 = 1;
-[e = . . _LATDbits 0 1 -> -> 1 `i `uc ]
-"244
-[; ;Le_Jason_Project.c: 244:         T0CONbits.TMR0ON = 1;
+"188
+[; ;Le_Jason_Project.c: 188:     Wreg_temp = WREG;
 [e = . . _T0CONbits 0 5 -> -> 1 `i `uc ]
-"245
-[; ;Le_Jason_Project.c: 245:     }
-}
-[e :U 876 ]
-"246
-[; ;Le_Jason_Project.c: 246:     if((LATDbits.LATD1 == 1)&&(temp == 0)){
-[e $ ! && == -> . . _LATDbits 0 1 `i -> 1 `i == _temp -> -> 0 `i `ui 877  ]
-{
-"247
-[; ;Le_Jason_Project.c: 247:         T0CON = 0b00000000;
-[e = _T0CON -> -> 0 `i `uc ]
-"248
-[; ;Le_Jason_Project.c: 248:         TMR0H = 0x6B + angle*0x0F;
-[e = _TMR0H -> + -> -> 107 `i `ui * _angle -> -> 15 `i `ui `uc ]
-"249
-[; ;Le_Jason_Project.c: 249:         TMR0L = 0x90 + angle*0xA0;
-[e = _TMR0L -> + -> -> 144 `i `ui * _angle -> -> 160 `i `ui `uc ]
-"251
-[; ;Le_Jason_Project.c: 251:         LATDbits.LATD1 = 0;
-[e = . . _LATDbits 0 1 -> -> 0 `i `uc ]
-"252
-[; ;Le_Jason_Project.c: 252:         T0CONbits.TMR0ON = 1;
-[e = . . _T0CONbits 0 5 -> -> 1 `i `uc ]
-"253
-[; ;Le_Jason_Project.c: 253:     }
-}
-[e :U 877 ]
-"254
-[; ;Le_Jason_Project.c: 254:     return;
-[e $UE 875  ]
-"255
-[; ;Le_Jason_Project.c: 255: }
-[e :UE 875 ]
+"189
+[; ;Le_Jason_Project.c: 189:     BSR_temp = BSR;
+[e = . . _T1CONbits 1 0 -> -> 1 `i `uc ]
+"190
+[; ;Le_Jason_Project.c: 190:     while(1){
+[e = . . _T3CONbits 1 0 -> -> 1 `i `uc ]
+"192
+[; ;Le_Jason_Project.c: 192:             CCP1handler();
+[e :UE 838 ]
 }
 [v $root$_HiPriISR `(v ~T0 @X0 0 e ]
-"257
-[; ;Le_Jason_Project.c: 257: void __attribute__((picinterrupt(("")))) HiPriISR (void)
+"194
+[; ;Le_Jason_Project.c: 194:         }
 [v _HiPriISR `(v ~T97 @X0 1 ef ]
-"258
-[; ;Le_Jason_Project.c: 258: {
 {
 [e :U _HiPriISR ]
 [f ]
-"260
-[; ;Le_Jason_Project.c: 260: }
-[e :UE 878 ]
+"195
+[; ;Le_Jason_Project.c: 195:         if(PIR4bits.CCP4IF){
+[e :U 841 ]
+{
+"200
+[; ;Le_Jason_Project.c: 200:             TMR1handler();
+[e $U 842  ]
+"201
+[; ;Le_Jason_Project.c: 201:             continue;
+}
+[e :U 840 ]
+[e $U 841  ]
+[e :U 842 ]
+"202
+[; ;Le_Jason_Project.c: 202:         }
+[e $UE 839  ]
+"203
+[; ;Le_Jason_Project.c: 203: 
+[e :UE 839 ]
 }
 [v $root$_LoPriISR `(v ~T0 @X0 0 e ]
-"261
-[; ;Le_Jason_Project.c: 261: void __attribute__((picinterrupt(("low_priority")))) LoPriISR (void)
+"204
+[; ;Le_Jason_Project.c: 204:         if(PIR2bits.TMR3IF){
 [v _LoPriISR `(v ~T98 @X0 1 ef ]
-"262
-[; ;Le_Jason_Project.c: 262: {
 {
 [e :U _LoPriISR ]
 [f ]
-"263
-[; ;Le_Jason_Project.c: 263:     Status_temp = STATUS;
+"205
+[; ;Le_Jason_Project.c: 205:             TMR3handler();
 [e = _Status_temp _STATUS ]
-"264
-[; ;Le_Jason_Project.c: 264:     Wreg_temp = WREG;
+"206
+[; ;Le_Jason_Project.c: 206:             continue;
 [e = _Wreg_temp _WREG ]
-"265
-[; ;Le_Jason_Project.c: 265:     BSR_temp = BSR;
+"207
+[; ;Le_Jason_Project.c: 207:         }
 [e = _BSR_temp _BSR ]
+"208
+[; ;Le_Jason_Project.c: 208: 
+[e :U 845 ]
+{
+"209
+[; ;Le_Jason_Project.c: 209:         break;
+[e $ ! != -> . . _PIR3bits 0 1 `i -> 0 `i 847  ]
+{
+"210
+[; ;Le_Jason_Project.c: 210:     }
+[e ( _CCP1handler ..  ]
+"211
+[; ;Le_Jason_Project.c: 211:     STATUS = Status_temp;
+[e $U 844  ]
+"212
+[; ;Le_Jason_Project.c: 212:     WREG = Wreg_temp;
+}
+[e :U 847 ]
+"213
+[; ;Le_Jason_Project.c: 213:     BSR = BSR_temp;
+[e $ ! != -> . . _PIR4bits 0 1 `i -> 0 `i 848  ]
+{
+"214
+[; ;Le_Jason_Project.c: 214: }
+[e ( _CCP4handler ..  ]
+"215
+[; ;Le_Jason_Project.c: 215: void CCP1handler(void){
+[e $U 844  ]
+"216
+[; ;Le_Jason_Project.c: 216:     unsigned long CCPRT;
+}
+[e :U 848 ]
+"217
+[; ;Le_Jason_Project.c: 217:     if(PIR1bits.TMR1IF){
+[e $ ! != -> . . _PIR1bits 0 0 `i -> 0 `i 849  ]
+{
+"218
+[; ;Le_Jason_Project.c: 218:         if(CCPR1H < 0b10000000){
+[e ( _TMR1handler ..  ]
+"219
+[; ;Le_Jason_Project.c: 219:             TMR1X++;
+[e $U 844  ]
+"220
+[; ;Le_Jason_Project.c: 220:             time0counter++;
+}
+[e :U 849 ]
+"222
+[; ;Le_Jason_Project.c: 222:         }
+[e $ ! != -> . . _PIR2bits 0 1 `i -> 0 `i 850  ]
+{
+"223
+[; ;Le_Jason_Project.c: 223:     }
+[e ( _TMR3handler ..  ]
+"224
+[; ;Le_Jason_Project.c: 224:     if(CCPR1X != TMR1X){
+[e $U 844  ]
+"225
+[; ;Le_Jason_Project.c: 225:         PIR3bits.CCP1IF = 0;
+}
+[e :U 850 ]
+"227
+[; ;Le_Jason_Project.c: 227:     }
+[e $U 846  ]
+"228
+[; ;Le_Jason_Project.c: 228:     LATDbits.LATD1 = !LATDbits.LATD1;
+}
+[e :U 844 ]
+[e $U 845  ]
+[e :U 846 ]
+"229
+[; ;Le_Jason_Project.c: 229:     if(LATDbits.LATD1 == 1){
+[e = _STATUS _Status_temp ]
+"230
+[; ;Le_Jason_Project.c: 230:         CCPRT = ((unsigned long)CCPR1X*65536) + ((unsigned long)CCPR1H*256) + (unsigned long)CCPR1L;
+[e = _WREG _Wreg_temp ]
+"231
+[; ;Le_Jason_Project.c: 231:         CCPRT += Servo1_on;
+[e = _BSR _BSR_temp ]
+"232
+[; ;Le_Jason_Project.c: 232:         CCPR1L = (CCPRT & 0x0000FF);
+[e :UE 843 ]
+}
+"233
+[; ;Le_Jason_Project.c: 233:         CCPR1H = (CCPRT & 0x00FF00)/256;
+[v _CCP1handler `(v ~T0 @X0 1 ef ]
+{
+[e :U _CCP1handler ]
+[f ]
+"234
+[; ;Le_Jason_Project.c: 234:         CCPR1X = (CCPRT & 0xFF0000)/65536;
+[v _CCPRT `ul ~T0 @X0 1 a ]
+"235
+[; ;Le_Jason_Project.c: 235:     }
+[e $ ! != -> . . _PIR1bits 0 0 `i -> 0 `i 852  ]
+{
+"236
+[; ;Le_Jason_Project.c: 236:     if(LATDbits.LATD1 == 0){
+[e $ ! < -> _CCPR1H `i -> 128 `i 853  ]
+{
+"237
+[; ;Le_Jason_Project.c: 237:       CCPRT = ((unsigned long)CCPR1X*65536) + ((unsigned long)CCPR1H*256) + (unsigned long)CCPR1L;
+[e ++ _TMR1X -> -> 1 `i `uc ]
+"238
+[; ;Le_Jason_Project.c: 238:         CCPRT += Servo1_off;
+[e ++ _time0counter -> -> -> 1 `i `l `ul ]
+"239
+[; ;Le_Jason_Project.c: 239:         CCPR1L = CCPRT & 0x0000FF;
+[e = . . _PIR1bits 0 0 -> -> 0 `i `uc ]
+"240
+[; ;Le_Jason_Project.c: 240:         CCPR1H = (CCPRT & 0x00FF00)/256;
+}
+[e :U 853 ]
+"241
+[; ;Le_Jason_Project.c: 241:         CCPR1X = (CCPRT & 0xFF0000)/65536;
+}
+[e :U 852 ]
+"242
+[; ;Le_Jason_Project.c: 242:     }
+[e $ ! != -> _CCPR1X `i -> _TMR1X `i 854  ]
+{
+"243
+[; ;Le_Jason_Project.c: 243:     PIR3bits.CCP1IF = 0;
+[e = . . _PIR3bits 0 1 -> -> 0 `i `uc ]
+"244
+[; ;Le_Jason_Project.c: 244:     return;
+[e $UE 851  ]
+"245
+[; ;Le_Jason_Project.c: 245: }
+}
+[e :U 854 ]
+"246
+[; ;Le_Jason_Project.c: 246: void CCP4handler(void){
+[e = . . _LATDbits 0 1 -> -> ! != -> . . _LATDbits 0 1 `i -> 0 `i `i `uc ]
+"247
+[; ;Le_Jason_Project.c: 247:     unsigned long CCPRT;
+[e $ ! == -> . . _LATDbits 0 1 `i -> 1 `i 855  ]
+{
+"248
+[; ;Le_Jason_Project.c: 248:     if(PIR2bits.TMR3IF){
+[e = _CCPRT + + * -> _CCPR1X `ul -> -> 65536 `l `ul * -> _CCPR1H `ul -> -> -> 256 `i `l `ul -> _CCPR1L `ul ]
+"249
+[; ;Le_Jason_Project.c: 249:         if(CCPR4H < 0b10000000){
+[e =+ _CCPRT _Servo1_on ]
+"250
+[; ;Le_Jason_Project.c: 250:             TMR3X++;
+[e = _CCPR1L -> & _CCPRT -> -> -> 255 `i `l `ul `uc ]
+"251
+[; ;Le_Jason_Project.c: 251:             PIR2bits.TMR3IF = 0;
+[e = _CCPR1H -> / & _CCPRT -> -> 65280 `ui `ul -> -> -> 256 `i `l `ul `uc ]
+"252
+[; ;Le_Jason_Project.c: 252:         }
+[e = _CCPR1X -> / & _CCPRT -> -> 16711680 `l `ul -> -> 65536 `l `ul `uc ]
+"253
+[; ;Le_Jason_Project.c: 253:     }
+}
+[e :U 855 ]
+"254
+[; ;Le_Jason_Project.c: 254:     if(CCPR4X != TMR3X){
+[e $ ! == -> . . _LATDbits 0 1 `i -> 0 `i 856  ]
+{
+"255
+[; ;Le_Jason_Project.c: 255:         PIR4bits.CCP4IF = 0;
+[e = _CCPRT + + * -> _CCPR1X `ul -> -> 65536 `l `ul * -> _CCPR1H `ul -> -> -> 256 `i `l `ul -> _CCPR1L `ul ]
+"256
+[; ;Le_Jason_Project.c: 256:         return;
+[e =+ _CCPRT _Servo1_off ]
+"257
+[; ;Le_Jason_Project.c: 257:     }
+[e = _CCPR1L -> & _CCPRT -> -> -> 255 `i `l `ul `uc ]
+"258
+[; ;Le_Jason_Project.c: 258:     LATEbits.LATE1 = !LATEbits.LATE1;
+[e = _CCPR1H -> / & _CCPRT -> -> 65280 `ui `ul -> -> -> 256 `i `l `ul `uc ]
+"259
+[; ;Le_Jason_Project.c: 259:     if(LATEbits.LATE1 == 1){
+[e = _CCPR1X -> / & _CCPRT -> -> 16711680 `l `ul -> -> 65536 `l `ul `uc ]
+"260
+[; ;Le_Jason_Project.c: 260:         CCPRT = ((unsigned long)CCPR4X*65536) + ((unsigned long)CCPR4H*256) + (unsigned long)CCPR4L;
+}
+[e :U 856 ]
+"261
+[; ;Le_Jason_Project.c: 261:         CCPRT += Servo2_on;
+[e = . . _PIR3bits 0 1 -> -> 0 `i `uc ]
+"262
+[; ;Le_Jason_Project.c: 262:         CCPR4L = (CCPRT & 0x0000FF);
+[e $UE 851  ]
+"263
+[; ;Le_Jason_Project.c: 263:         CCPR4H = (CCPRT & 0x00FF00)/256;
+[e :UE 851 ]
+}
+"264
+[; ;Le_Jason_Project.c: 264:         CCPR4X = (CCPRT & 0xFF0000)/65536;
+[v _CCP4handler `(v ~T0 @X0 1 ef ]
+{
+[e :U _CCP4handler ]
+[f ]
+"265
+[; ;Le_Jason_Project.c: 265:     }
+[v _CCPRT `ul ~T0 @X0 1 a ]
 "266
-[; ;Le_Jason_Project.c: 266:     while(1) {
-[e :U 881 ]
+[; ;Le_Jason_Project.c: 266:     if(LATEbits.LATE1 == 0){
+[e $ ! != -> . . _PIR2bits 0 1 `i -> 0 `i 858  ]
 {
 "267
-[; ;Le_Jason_Project.c: 267:         if(INTCONbits.TMR0IF){
-[e $ ! != -> . . _INTCONbits 0 2 `i -> 0 `i 883  ]
+[; ;Le_Jason_Project.c: 267:         CCPRT = ((unsigned long)CCPR4X*65536) + ((unsigned long)CCPR4H*256) + (unsigned long)CCPR4L;
+[e $ ! < -> _CCPR4H `i -> 128 `i 859  ]
 {
 "268
-[; ;Le_Jason_Project.c: 268:             TMR0Config(angle);
-[e ( _TMR0Config (1 _angle ]
+[; ;Le_Jason_Project.c: 268:         CCPRT += Servo2_off;
+[e ++ _TMR3X -> -> 1 `i `uc ]
 "269
-[; ;Le_Jason_Project.c: 269:             INTCONbits.TMR0IF = 0;
-[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
+[; ;Le_Jason_Project.c: 269:         CCPR4L = (CCPRT & 0x0000FF);
+[e = . . _PIR2bits 0 1 -> -> 0 `i `uc ]
 "270
-[; ;Le_Jason_Project.c: 270:             continue;
-[e $U 880  ]
+[; ;Le_Jason_Project.c: 270:         CCPR4H = (CCPRT & 0x00FF00)/256;
+}
+[e :U 859 ]
 "271
-[; ;Le_Jason_Project.c: 271:         }
+[; ;Le_Jason_Project.c: 271:         CCPR4X = (CCPRT & 0xFF0000)/65536;
 }
-[e :U 883 ]
+[e :U 858 ]
 "272
-[; ;Le_Jason_Project.c: 272:         break;
-[e $U 882  ]
-"273
-[; ;Le_Jason_Project.c: 273:     }
-}
-[e :U 880 ]
-[e $U 881  ]
-[e :U 882 ]
-"274
-[; ;Le_Jason_Project.c: 274:     STATUS = Status_temp;
-[e = _STATUS _Status_temp ]
-"275
-[; ;Le_Jason_Project.c: 275:     WREG = Wreg_temp;
-[e = _WREG _Wreg_temp ]
-"276
-[; ;Le_Jason_Project.c: 276:     BSR = BSR_temp;
-[e = _BSR _BSR_temp ]
-"277
-[; ;Le_Jason_Project.c: 277: }
-[e :UE 879 ]
-}
-"279
-[; ;Le_Jason_Project.c: 279: void Servo(unsigned int value){
-[v _Servo `(v ~T0 @X0 1 ef1`ui ]
+[; ;Le_Jason_Project.c: 272:     }
+[e $ ! != -> _CCPR4X `i -> _TMR3X `i 860  ]
 {
-[e :U _Servo ]
-[v _value `ui ~T0 @X0 1 r1 ]
-[f ]
-"280
-[; ;Le_Jason_Project.c: 280:     if(value < 0)
-[e $ ! < _value -> -> 0 `i `ui 885  ]
-"281
-[; ;Le_Jason_Project.c: 281:         value = 0;
-[e = _value -> -> 0 `i `ui ]
-[e :U 885 ]
-"282
-[; ;Le_Jason_Project.c: 282:     if(value > 180)
-[e $ ! > _value -> -> 180 `i `ui 886  ]
-"283
-[; ;Le_Jason_Project.c: 283:         value = 180;
-[e = _value -> -> 180 `i `ui ]
-[e :U 886 ]
-"284
-[; ;Le_Jason_Project.c: 284:     value = map(value,0,180,544,2400);
-[e = _value ( _map (4 , , , , _value -> -> 0 `i `ui -> -> 180 `i `ui -> -> 544 `i `ui -> -> 2400 `i `ui ]
-"285
-[; ;Le_Jason_Project.c: 285:     if(value < 544)
-[e $ ! < _value -> -> 544 `i `ui 887  ]
-"286
-[; ;Le_Jason_Project.c: 286:         value = 544;
-[e = _value -> -> 544 `i `ui ]
-[e $U 888  ]
-"287
-[; ;Le_Jason_Project.c: 287:     else if(value > 544)
-[e :U 887 ]
-[e $ ! > _value -> -> 544 `i `ui 889  ]
-"288
-[; ;Le_Jason_Project.c: 288:         value = 2400;
-[e = _value -> -> 2400 `i `ui ]
-[e :U 889 ]
-[e :U 888 ]
-"290
-[; ;Le_Jason_Project.c: 290: }
-[e :UE 884 ]
+"273
+[; ;Le_Jason_Project.c: 273:     PIR4bits.CCP4IF = 0;
+[e = . . _PIR4bits 0 1 -> -> 0 `i `uc ]
+"274
+[; ;Le_Jason_Project.c: 274:     return;
+[e $UE 857  ]
+"275
+[; ;Le_Jason_Project.c: 275: }
 }
+[e :U 860 ]
+"276
+[; ;Le_Jason_Project.c: 276: void TMR1handler(void){
+[e = . . _LATEbits 0 1 -> -> ! != -> . . _LATEbits 0 1 `i -> 0 `i `i `uc ]
+"277
+[; ;Le_Jason_Project.c: 277:     TMR1X++;
+[e $ ! == -> . . _LATEbits 0 1 `i -> 1 `i 861  ]
+{
+"278
+[; ;Le_Jason_Project.c: 278:     time0counter++;
+[e = _CCPRT + + * -> _CCPR4X `ul -> -> 65536 `l `ul * -> _CCPR4H `ul -> -> -> 256 `i `l `ul -> _CCPR4L `ul ]
+"279
+[; ;Le_Jason_Project.c: 279:     PIR1bits.TMR1IF = 0;
+[e =+ _CCPRT _Servo2_on ]
+"280
+[; ;Le_Jason_Project.c: 280:     return;
+[e = _CCPR4L -> & _CCPRT -> -> -> 255 `i `l `ul `uc ]
+"281
+[; ;Le_Jason_Project.c: 281: }
+[e = _CCPR4H -> / & _CCPRT -> -> 65280 `ui `ul -> -> -> 256 `i `l `ul `uc ]
+"282
+[; ;Le_Jason_Project.c: 282: void TMR3handler(void){
+[e = _CCPR4X -> / & _CCPRT -> -> 16711680 `l `ul -> -> 65536 `l `ul `uc ]
+"283
+[; ;Le_Jason_Project.c: 283:     TMR3X++;
+}
+[e :U 861 ]
+"284
+[; ;Le_Jason_Project.c: 284:     PIR2bits.TMR3IF = 0;
+[e $ ! == -> . . _LATEbits 0 1 `i -> 0 `i 862  ]
+{
+"285
+[; ;Le_Jason_Project.c: 285:     return;
+[e = _CCPRT + + * -> _CCPR4X `ul -> -> 65536 `l `ul * -> _CCPR4H `ul -> -> -> 256 `i `l `ul -> _CCPR4L `ul ]
+"286
+[; ;Le_Jason_Project.c: 286: }
+[e =+ _CCPRT _Servo2_off ]
+"287
+[; ;Le_Jason_Project.c: 287: void TMR0handler(void){
+[e = _CCPR4L -> & _CCPRT -> -> -> 255 `i `l `ul `uc ]
+"288
+[; ;Le_Jason_Project.c: 288:     time0counter++;
+[e = _CCPR4H -> / & _CCPRT -> -> 65280 `ui `ul -> -> -> 256 `i `l `ul `uc ]
+"289
+[; ;Le_Jason_Project.c: 289:     CurrentTime = time0counter*0.064;
+[e = _CCPR4X -> / & _CCPRT -> -> 16711680 `l `ul -> -> 65536 `l `ul `uc ]
+"290
+[; ;Le_Jason_Project.c: 290:     INTCONbits.TMR0IF = 0;
+}
+[e :U 862 ]
+"291
+[; ;Le_Jason_Project.c: 291:     return;
+[e = . . _PIR4bits 0 1 -> -> 0 `i `uc ]
+"292
+[; ;Le_Jason_Project.c: 292: }
+[e $UE 857  ]
 "293
-[; ;Le_Jason_Project.c: 293: unsigned int map(unsigned int value,unsigned int valuemin,unsigned int valuemax,unsigned int newmin,unsigned int newmax){
+[; ;Le_Jason_Project.c: 293: 
+[e :UE 857 ]
+}
+"294
+[; ;Le_Jason_Project.c: 294: unsigned int map(unsigned int value,unsigned int valuemin,unsigned int valuemax,unsigned int newmin,unsigned int newmax){
+[v _TMR1handler `(v ~T0 @X0 1 ef ]
+{
+[e :U _TMR1handler ]
+[f ]
+"295
+[; ;Le_Jason_Project.c: 295:     unsigned int first = (value - valuemin);
+[e ++ _TMR1X -> -> 1 `i `uc ]
+"296
+[; ;Le_Jason_Project.c: 296:     unsigned long second = (unsigned long)first*((unsigned long)newmax - (unsigned long)newmin);
+[e ++ _time0counter -> -> -> 1 `i `l `ul ]
+"297
+[; ;Le_Jason_Project.c: 297:     unsigned int third = second/(valuemax - valuemin);
+[e = . . _PIR1bits 0 0 -> -> 0 `i `uc ]
+"298
+[; ;Le_Jason_Project.c: 298:     return third + newmin;
+[e $UE 863  ]
+"299
+[; ;Le_Jason_Project.c: 299: 
+[e :UE 863 ]
+}
+"300
+[; ;Le_Jason_Project.c: 300: }
+[v _TMR3handler `(v ~T0 @X0 1 ef ]
+{
+[e :U _TMR3handler ]
+[f ]
+"301
+[; ;Le_Jason_Project.c: 301: void Servo1(unsigned int angle){
+[e ++ _TMR3X -> -> 1 `i `uc ]
+"302
+[; ;Le_Jason_Project.c: 302:     unsigned int temp;
+[e = . . _PIR2bits 0 1 -> -> 0 `i `uc ]
+"303
+[; ;Le_Jason_Project.c: 303:     if(angle < 0){
+[e $UE 864  ]
+"304
+[; ;Le_Jason_Project.c: 304:         angle = -1*angle;
+[e :UE 864 ]
+}
+"305
+[; ;Le_Jason_Project.c: 305:     }
+[v _TMR0handler `(v ~T0 @X0 1 ef ]
+{
+[e :U _TMR0handler ]
+[f ]
+"306
+[; ;Le_Jason_Project.c: 306:     if(angle > 180){
+[e ++ _time0counter -> -> -> 1 `i `l `ul ]
+"307
+[; ;Le_Jason_Project.c: 307:         angle = 180;
+[e = _CurrentTime -> * -> _time0counter `d .0.064 `f ]
+"308
+[; ;Le_Jason_Project.c: 308:     }
+[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
+"309
+[; ;Le_Jason_Project.c: 309:     if(angle < 0){
+[e $UE 865  ]
+"310
+[; ;Le_Jason_Project.c: 310:         angle = 0;
+[e :UE 865 ]
+}
+"312
+[; ;Le_Jason_Project.c: 312:     temp = Servo1_on;
 [v _map `(ui ~T0 @X0 1 ef5`ui`ui`ui`ui`ui ]
 {
 [e :U _map ]
@@ -2046,11 +2307,656 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _newmin `ui ~T0 @X0 1 r4 ]
 [v _newmax `ui ~T0 @X0 1 r5 ]
 [f ]
-"294
-[; ;Le_Jason_Project.c: 294:     return ((((value - valuemin)*(newmax - newmin))/(valuemax - valuemin)) + newmin);
-[e ) + / * - _value _valuemin - _newmax _newmin - _valuemax _valuemin _newmin ]
-[e $UE 890  ]
-"295
-[; ;Le_Jason_Project.c: 295: }
-[e :UE 890 ]
+"313
+[; ;Le_Jason_Project.c: 313:     Servo1_on = map(angle,0,180,2000,9600);
+[v _first `ui ~T0 @X0 1 a ]
+[e = _first - _value _valuemin ]
+"314
+[; ;Le_Jason_Project.c: 314:     Servo1_off -= Servo1_on - temp;
+[v _second `ul ~T0 @X0 1 a ]
+[e = _second * -> _first `ul - -> _newmax `ul -> _newmin `ul ]
+"315
+[; ;Le_Jason_Project.c: 315: }
+[v _third `ui ~T0 @X0 1 a ]
+[e = _third -> / _second -> - _valuemax _valuemin `ul `ui ]
+"316
+[; ;Le_Jason_Project.c: 316: void Servo2(unsigned int angle){
+[e ) + _third _newmin ]
+[e $UE 866  ]
+"318
+[; ;Le_Jason_Project.c: 318:     if(angle < 0){
+[e :UE 866 ]
 }
+"319
+[; ;Le_Jason_Project.c: 319:         angle = -1*angle;
+[v _Servo1 `(v ~T0 @X0 1 ef1`ui ]
+{
+[e :U _Servo1 ]
+[v _angle `ui ~T0 @X0 1 r1 ]
+[f ]
+"320
+[; ;Le_Jason_Project.c: 320:     }
+[v _temp `ui ~T0 @X0 1 a ]
+"321
+[; ;Le_Jason_Project.c: 321:     if(angle > 180){
+[e $ ! < _angle -> -> 0 `i `ui 868  ]
+{
+"322
+[; ;Le_Jason_Project.c: 322:         angle = 180;
+[e = _angle * -> -U -> 1 `i `ui _angle ]
+"323
+[; ;Le_Jason_Project.c: 323:     }
+}
+[e :U 868 ]
+"324
+[; ;Le_Jason_Project.c: 324:     if(angle < 0){
+[e $ ! > _angle -> -> 180 `i `ui 869  ]
+{
+"325
+[; ;Le_Jason_Project.c: 325:         angle = 0;
+[e = _angle -> -> 180 `i `ui ]
+"326
+[; ;Le_Jason_Project.c: 326:     }
+}
+[e :U 869 ]
+"327
+[; ;Le_Jason_Project.c: 327:     temp = Servo2_on;
+[e $ ! < _angle -> -> 0 `i `ui 870  ]
+{
+"328
+[; ;Le_Jason_Project.c: 328:     Servo2_on = map(angle,0,180,2000,9600);
+[e = _angle -> -> 0 `i `ui ]
+"329
+[; ;Le_Jason_Project.c: 329:     Servo2_off -= Servo2_on - temp;
+}
+[e :U 870 ]
+"330
+[; ;Le_Jason_Project.c: 330: }
+[e = _temp -> _Servo1_on `ui ]
+"331
+[; ;Le_Jason_Project.c: 331: 
+[e = _Servo1_on -> ( _map (4 , , , , _angle -> -> 0 `i `ui -> -> 180 `i `ui -> -> 2000 `i `ui -> -> 9600 `i `ui `ul ]
+"332
+[; ;Le_Jason_Project.c: 332: void I2C_Master_Wait(void){
+[e =- _Servo1_off - _Servo1_on -> _temp `ul ]
+"333
+[; ;Le_Jason_Project.c: 333:     while((SSP1STAT & 0x04) || (SSP1CON2 & 0x1F)){
+[e :UE 867 ]
+}
+"334
+[; ;Le_Jason_Project.c: 334:     }
+[v _Servo2 `(v ~T0 @X0 1 ef1`ui ]
+{
+[e :U _Servo2 ]
+[v _angle `ui ~T0 @X0 1 r1 ]
+[f ]
+"335
+[; ;Le_Jason_Project.c: 335: }
+[v _temp `ui ~T0 @X0 1 a ]
+"336
+[; ;Le_Jason_Project.c: 336: 
+[e $ ! < _angle -> -> 0 `i `ui 872  ]
+{
+"337
+[; ;Le_Jason_Project.c: 337: void I2C_Master_Start(void){
+[e = _angle * -> -U -> 1 `i `ui _angle ]
+"338
+[; ;Le_Jason_Project.c: 338:     I2C_Master_Wait();
+}
+[e :U 872 ]
+"339
+[; ;Le_Jason_Project.c: 339:     SSP1CON2bits.SEN = 1;
+[e $ ! > _angle -> -> 180 `i `ui 873  ]
+{
+"340
+[; ;Le_Jason_Project.c: 340: }
+[e = _angle -> -> 180 `i `ui ]
+"341
+[; ;Le_Jason_Project.c: 341: 
+}
+[e :U 873 ]
+"342
+[; ;Le_Jason_Project.c: 342: void I2C_Start(char add){
+[e $ ! < _angle -> -> 0 `i `ui 874  ]
+{
+"343
+[; ;Le_Jason_Project.c: 343:     I2C_Master_Wait();
+[e = _angle -> -> 0 `i `ui ]
+"344
+[; ;Le_Jason_Project.c: 344:     SSP1CON2bits.SEN = 1;
+}
+[e :U 874 ]
+"345
+[; ;Le_Jason_Project.c: 345:     I2C_Master_Write(add);
+[e = _temp -> _Servo2_on `ui ]
+"346
+[; ;Le_Jason_Project.c: 346: }
+[e = _Servo2_on -> ( _map (4 , , , , _angle -> -> 0 `i `ui -> -> 180 `i `ui -> -> 2000 `i `ui -> -> 9600 `i `ui `ul ]
+"347
+[; ;Le_Jason_Project.c: 347: 
+[e =- _Servo2_off - _Servo2_on -> _temp `ul ]
+"348
+[; ;Le_Jason_Project.c: 348: void I2C_Master_RepeatedStart(void){
+[e :UE 871 ]
+}
+"350
+[; ;Le_Jason_Project.c: 350:     SSP1CON2bits.RSEN = 1;
+[v _I2C_Master_Wait `(v ~T0 @X0 1 ef ]
+{
+[e :U _I2C_Master_Wait ]
+[f ]
+"351
+[; ;Le_Jason_Project.c: 351: }
+[e $U 876  ]
+[e :U 877 ]
+{
+"352
+[; ;Le_Jason_Project.c: 352: 
+}
+[e :U 876 ]
+"351
+[; ;Le_Jason_Project.c: 351: }
+[e $ || != & -> _SSP1STAT `i -> 4 `i -> 0 `i != & -> _SSP1CON2 `i -> 31 `i -> 0 `i 877  ]
+[e :U 878 ]
+"353
+[; ;Le_Jason_Project.c: 353: void I2C_Master_Stop(void){
+[e :UE 875 ]
+}
+"355
+[; ;Le_Jason_Project.c: 355:     SSP1CON2bits.PEN = 1;
+[v _I2C_Master_Start `(v ~T0 @X0 1 ef ]
+{
+[e :U _I2C_Master_Start ]
+[f ]
+"356
+[; ;Le_Jason_Project.c: 356: }
+[e ( _I2C_Master_Wait ..  ]
+"357
+[; ;Le_Jason_Project.c: 357: 
+[e = . . _SSP1CON2bits 0 0 -> -> 1 `i `uc ]
+"358
+[; ;Le_Jason_Project.c: 358: void I2C_ACK(void){
+[e :UE 879 ]
+}
+"360
+[; ;Le_Jason_Project.c: 360:     SSP1CON2bits.ACKEN = 1;
+[v _I2C_Start `(v ~T0 @X0 1 ef1`uc ]
+{
+[e :U _I2C_Start ]
+[v _add `uc ~T0 @X0 1 r1 ]
+[f ]
+"361
+[; ;Le_Jason_Project.c: 361:     while(SSP1CON2bits.ACKEN == 1){
+[e ( _I2C_Master_Wait ..  ]
+"362
+[; ;Le_Jason_Project.c: 362:     }
+[e = . . _SSP1CON2bits 0 0 -> -> 1 `i `uc ]
+"363
+[; ;Le_Jason_Project.c: 363: }
+[e ( _I2C_Master_Write (1 -> _add `uc ]
+"364
+[; ;Le_Jason_Project.c: 364: 
+[e :UE 880 ]
+}
+"366
+[; ;Le_Jason_Project.c: 366:     SSP1CON2bits.ACKDT = 1;
+[v _I2C_Master_RepeatedStart `(v ~T0 @X0 1 ef ]
+{
+[e :U _I2C_Master_RepeatedStart ]
+[f ]
+"367
+[; ;Le_Jason_Project.c: 367:     SSP1CON2bits.ACKEN = 1;
+[e ( _I2C_Master_Wait ..  ]
+"368
+[; ;Le_Jason_Project.c: 368:     while(SSP1CON2bits.ACKEN == 1){
+[e = . . _SSP1CON2bits 0 1 -> -> 1 `i `uc ]
+"369
+[; ;Le_Jason_Project.c: 369:     }
+[e :UE 881 ]
+}
+"371
+[; ;Le_Jason_Project.c: 371: 
+[v _I2C_Master_Stop `(v ~T0 @X0 1 ef ]
+{
+[e :U _I2C_Master_Stop ]
+[f ]
+"372
+[; ;Le_Jason_Project.c: 372: unsigned char I2C_Master_Write(unsigned char data){
+[e ( _I2C_Master_Wait ..  ]
+"373
+[; ;Le_Jason_Project.c: 373:     I2C_Master_Wait();
+[e = . . _SSP1CON2bits 0 2 -> -> 1 `i `uc ]
+"374
+[; ;Le_Jason_Project.c: 374:     SSP1BUF = data;
+[e :UE 882 ]
+}
+"376
+[; ;Le_Jason_Project.c: 376:     }
+[v _I2C_ACK `(v ~T0 @X0 1 ef ]
+{
+[e :U _I2C_ACK ]
+[f ]
+"377
+[; ;Le_Jason_Project.c: 377:     PIR1bits.SSP1IF = 0;
+[e = . . _SSP1CON2bits 0 5 -> -> 0 `i `uc ]
+"378
+[; ;Le_Jason_Project.c: 378:     return SSP1CON2bits.ACKSTAT;
+[e = . . _SSP1CON2bits 0 4 -> -> 1 `i `uc ]
+"379
+[; ;Le_Jason_Project.c: 379: }
+[e $U 884  ]
+[e :U 885 ]
+{
+"380
+[; ;Le_Jason_Project.c: 380: 
+}
+[e :U 884 ]
+"379
+[; ;Le_Jason_Project.c: 379: }
+[e $ == -> . . _SSP1CON2bits 0 4 `i -> 1 `i 885  ]
+[e :U 886 ]
+"381
+[; ;Le_Jason_Project.c: 381: unsigned char I2C_Read_Byte(void){
+[e :UE 883 ]
+}
+"383
+[; ;Le_Jason_Project.c: 383:     SSP1CON2bits.RCEN = 1;
+[v _I2C_NACK `(v ~T0 @X0 1 ef ]
+{
+[e :U _I2C_NACK ]
+[f ]
+"384
+[; ;Le_Jason_Project.c: 384:     while(!PIR1bits.SSP1IF){
+[e = . . _SSP1CON2bits 0 5 -> -> 1 `i `uc ]
+"385
+[; ;Le_Jason_Project.c: 385:     }
+[e = . . _SSP1CON2bits 0 4 -> -> 1 `i `uc ]
+"386
+[; ;Le_Jason_Project.c: 386:     PIR1bits.SSP1IF = 0;
+[e $U 888  ]
+[e :U 889 ]
+{
+"387
+[; ;Le_Jason_Project.c: 387:     I2C_Master_Wait();
+}
+[e :U 888 ]
+"386
+[; ;Le_Jason_Project.c: 386:     PIR1bits.SSP1IF = 0;
+[e $ == -> . . _SSP1CON2bits 0 4 `i -> 1 `i 889  ]
+[e :U 890 ]
+"388
+[; ;Le_Jason_Project.c: 388:     return SSP1BUF;
+[e :UE 887 ]
+}
+"390
+[; ;Le_Jason_Project.c: 390: 
+[v _I2C_Master_Write `(uc ~T0 @X0 1 ef1`uc ]
+{
+[e :U _I2C_Master_Write ]
+[v _data `uc ~T0 @X0 1 r1 ]
+[f ]
+"391
+[; ;Le_Jason_Project.c: 391: unsigned char I2C_Read(unsigned char ACK_NACK){
+[e ( _I2C_Master_Wait ..  ]
+"392
+[; ;Le_Jason_Project.c: 392:     unsigned char Data;
+[e = _SSP1BUF _data ]
+"393
+[; ;Le_Jason_Project.c: 393:     SSP1CON2bits.RCEN = 1;
+[e $U 892  ]
+[e :U 893 ]
+{
+"394
+[; ;Le_Jason_Project.c: 394:     while(!SSP1STATbits.BF){
+}
+[e :U 892 ]
+"393
+[; ;Le_Jason_Project.c: 393:     SSP1CON2bits.RCEN = 1;
+[e $ ! != -> . . _PIR1bits 0 3 `i -> 0 `i 893  ]
+[e :U 894 ]
+"395
+[; ;Le_Jason_Project.c: 395:     }
+[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
+"396
+[; ;Le_Jason_Project.c: 396:     Data = SSP1BUF;
+[e ) . . _SSP1CON2bits 0 6 ]
+[e $UE 891  ]
+"397
+[; ;Le_Jason_Project.c: 397:     if(ACK_NACK == 0){
+[e :UE 891 ]
+}
+"399
+[; ;Le_Jason_Project.c: 399:     }
+[v _I2C_Read_Byte `(uc ~T0 @X0 1 ef ]
+{
+[e :U _I2C_Read_Byte ]
+[f ]
+"400
+[; ;Le_Jason_Project.c: 400:     else{
+[e ( _I2C_Master_Wait ..  ]
+"401
+[; ;Le_Jason_Project.c: 401:         I2C_NACK();
+[e = . . _SSP1CON2bits 0 3 -> -> 1 `i `uc ]
+"402
+[; ;Le_Jason_Project.c: 402:     }
+[e $U 896  ]
+[e :U 897 ]
+{
+"403
+[; ;Le_Jason_Project.c: 403:     while(!PIR1bits.SSP1IF){
+}
+[e :U 896 ]
+"402
+[; ;Le_Jason_Project.c: 402:     }
+[e $ ! != -> . . _PIR1bits 0 3 `i -> 0 `i 897  ]
+[e :U 898 ]
+"404
+[; ;Le_Jason_Project.c: 404:     }
+[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
+"405
+[; ;Le_Jason_Project.c: 405:     PIR1bits.SSP1IF = 0;
+[e ( _I2C_Master_Wait ..  ]
+"406
+[; ;Le_Jason_Project.c: 406:     return Data;
+[e ) _SSP1BUF ]
+[e $UE 895  ]
+"407
+[; ;Le_Jason_Project.c: 407: }
+[e :UE 895 ]
+}
+"409
+[; ;Le_Jason_Project.c: 409: void MPU6050_Read(void){
+[v _I2C_Read `(uc ~T0 @X0 1 ef1`uc ]
+{
+[e :U _I2C_Read ]
+[v _ACK_NACK `uc ~T0 @X0 1 r1 ]
+[f ]
+"410
+[; ;Le_Jason_Project.c: 410:     char buffer[40];
+[v _Data `uc ~T0 @X0 1 a ]
+"411
+[; ;Le_Jason_Project.c: 411:     int Ax,Ay,Az,Gx,Gy,Gz,T;
+[e = . . _SSP1CON2bits 0 3 -> -> 1 `i `uc ]
+"412
+[; ;Le_Jason_Project.c: 412:     float accAngleX, accAngleY;
+[e $U 900  ]
+[e :U 901 ]
+{
+"413
+[; ;Le_Jason_Project.c: 413:     float AX,AY,AZ,GX,GY,GZ,t, roll, pitch;
+}
+[e :U 900 ]
+"412
+[; ;Le_Jason_Project.c: 412:     float accAngleX, accAngleY;
+[e $ ! != -> . . _SSP1STATbits 2 0 `i -> 0 `i 901  ]
+[e :U 902 ]
+"414
+[; ;Le_Jason_Project.c: 414:     CurrentTime = ((time0counter*0.016384)+(((double)TMR1H*256) + (double)TMR1L)*0.000000250)*1000;
+[e = _Data _SSP1BUF ]
+"415
+[; ;Le_Jason_Project.c: 415:     float elapsedTime = (CurrentTime - previousTime) / 1000;
+[e $ ! == -> _ACK_NACK `i -> 0 `i 903  ]
+{
+"416
+[; ;Le_Jason_Project.c: 416:     previousTime = CurrentTime;
+[e ( _I2C_ACK ..  ]
+"417
+[; ;Le_Jason_Project.c: 417:     I2C_Start(0xD0);
+}
+[e $U 904  ]
+"418
+[; ;Le_Jason_Project.c: 418:     I2C_Master_Write(0x3B);
+[e :U 903 ]
+{
+"419
+[; ;Le_Jason_Project.c: 419:     I2C_Master_Stop();
+[e ( _I2C_NACK ..  ]
+"420
+[; ;Le_Jason_Project.c: 420:     I2C_Start(0xD1);
+}
+[e :U 904 ]
+"421
+[; ;Le_Jason_Project.c: 421:     I2C_Read(0);
+[e $U 905  ]
+[e :U 906 ]
+{
+"422
+[; ;Le_Jason_Project.c: 422:     Ax = ((int)I2C_Read(0)<<8) | (int)I2C_Read(0);
+}
+[e :U 905 ]
+"421
+[; ;Le_Jason_Project.c: 421:     I2C_Read(0);
+[e $ ! != -> . . _PIR1bits 0 3 `i -> 0 `i 906  ]
+[e :U 907 ]
+"423
+[; ;Le_Jason_Project.c: 423:     Ay = ((int)I2C_Read(0)<<8) | (int)I2C_Read(0);
+[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
+"424
+[; ;Le_Jason_Project.c: 424:     Az = ((int)I2C_Read(0)<<8) | (int)I2C_Read(0);
+[e ) _Data ]
+[e $UE 899  ]
+"425
+[; ;Le_Jason_Project.c: 425:     T = ((int)I2C_Read(0)<<8) | (int)I2C_Read(0);
+[e :UE 899 ]
+}
+"427
+[; ;Le_Jason_Project.c: 427:     Gy = ((int)I2C_Read(0)<<8) | (int)I2C_Read(0);
+[v _MPU6050_Read `(v ~T0 @X0 1 ef ]
+{
+[e :U _MPU6050_Read ]
+[f ]
+"428
+[; ;Le_Jason_Project.c: 428:     Gz = ((int)I2C_Read(0)<<8) | (int)I2C_Read(1);
+[v _buffer `uc ~T0 @X0 -> 40 `i a ]
+"429
+[; ;Le_Jason_Project.c: 429:     I2C_Master_Stop();
+[v _Ax `i ~T0 @X0 1 a ]
+[v _Ay `i ~T0 @X0 1 a ]
+[v _Az `i ~T0 @X0 1 a ]
+[v _Gx `i ~T0 @X0 1 a ]
+[v _Gy `i ~T0 @X0 1 a ]
+[v _Gz `i ~T0 @X0 1 a ]
+[v _T `i ~T0 @X0 1 a ]
+"430
+[; ;Le_Jason_Project.c: 430: 
+[v _accAngleX `f ~T0 @X0 1 a ]
+[v _accAngleY `f ~T0 @X0 1 a ]
+"431
+[; ;Le_Jason_Project.c: 431:     AX = (float)Ax/16384.0;
+[v _AX `f ~T0 @X0 1 a ]
+[v _AY `f ~T0 @X0 1 a ]
+[v _AZ `f ~T0 @X0 1 a ]
+[v _GX `f ~T0 @X0 1 a ]
+[v _GY `f ~T0 @X0 1 a ]
+[v _GZ `f ~T0 @X0 1 a ]
+[v _t `f ~T0 @X0 1 a ]
+[v _roll `f ~T0 @X0 1 a ]
+[v _pitch `f ~T0 @X0 1 a ]
+"432
+[; ;Le_Jason_Project.c: 432:     AY = (float)Ay/16384.0;
+[e = _CurrentTime -> * + * -> _time0counter `d .0.016384 * + * -> _TMR1H `d -> -> 256 `i `d -> _TMR1L `d .0.000000250 -> -> 1000 `i `d `f ]
+"433
+[; ;Le_Jason_Project.c: 433:     AZ = (float)Az/16384.0;
+[v _elapsedTime `f ~T0 @X0 1 a ]
+[e = _elapsedTime / - _CurrentTime _previousTime -> -> 1000 `i `f ]
+"434
+[; ;Le_Jason_Project.c: 434:     GX = (float)Gx/131.0;
+[e = _previousTime _CurrentTime ]
+"435
+[; ;Le_Jason_Project.c: 435:     GY = (float)Gy/131.0;
+[e ( _I2C_Start (1 -> -> 208 `i `uc ]
+"436
+[; ;Le_Jason_Project.c: 436:     GZ = (float)Gz/131.0;
+[e ( _I2C_Master_Write (1 -> -> 59 `i `uc ]
+"437
+[; ;Le_Jason_Project.c: 437:     t = ((float)T/340.00)+36.53;
+[e ( _I2C_Master_Stop ..  ]
+"438
+[e ( _I2C_Start (1 -> -> 209 `i `uc ]
+"439
+[e ( _I2C_Read (1 -> -> 0 `i `uc ]
+"440
+[e = _Ax | << -> ( _I2C_Read (1 -> -> 0 `i `uc `i -> 8 `i -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
+"441
+[e = _Ay | << -> ( _I2C_Read (1 -> -> 0 `i `uc `i -> 8 `i -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
+"442
+[e = _Az | << -> ( _I2C_Read (1 -> -> 0 `i `uc `i -> 8 `i -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
+"443
+[e = _T | << -> ( _I2C_Read (1 -> -> 0 `i `uc `i -> 8 `i -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
+"444
+[e = _Gx | << -> ( _I2C_Read (1 -> -> 0 `i `uc `i -> 8 `i -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
+"445
+[e = _Gy | << -> ( _I2C_Read (1 -> -> 0 `i `uc `i -> 8 `i -> ( _I2C_Read (1 -> -> 0 `i `uc `i ]
+"446
+[e = _Gz | << -> ( _I2C_Read (1 -> -> 0 `i `uc `i -> 8 `i -> ( _I2C_Read (1 -> -> 1 `i `uc `i ]
+"447
+[e ( _I2C_Master_Stop ..  ]
+"449
+[e = _AX -> / -> -> _Ax `f `d .16384.0 `f ]
+"450
+[e = _AY -> / -> -> _Ay `f `d .16384.0 `f ]
+"451
+[e = _AZ -> / -> -> _Az `f `d .16384.0 `f ]
+"452
+[e = _GX -> / -> -> _Gx `f `d .131.0 `f ]
+"453
+[e = _GY -> / -> -> _Gy `f `d .131.0 `f ]
+"454
+[e = _GZ -> / -> -> _Gz `f `d .131.0 `f ]
+"455
+[e = _t -> + / -> -> _T `f `d .340.00 .36.53 `f ]
+"480
+[; ;Le_Jason_Project.c: 480:       accAngleX=(-atan2f(AX/9.8,-AY/9.8)/2/3.141592654*360)+1.9;
+[e = _accAngleX -> + * / -> / -U ( _atan2f (2 , -> / -> _AX `d .9.8 `f -> / -> -U _AY `d .9.8 `f -> -> 2 `i `f `d .3.141592654 -> -> 360 `i `d .1.9 `f ]
+"482
+[; ;Le_Jason_Project.c: 482:      accAngleY = (-atan2f(-AZ/9.8,-AY/9.8)/2/3.141592654*360)-1.9;
+[e = _accAngleY -> - * / -> / -U ( _atan2f (2 , -> / -> -U _AZ `d .9.8 `f -> / -> -U _AY `d .9.8 `f -> -> 2 `i `f `d .3.141592654 -> -> 360 `i `d .1.9 `f ]
+"483
+[; ;Le_Jason_Project.c: 483:     GyroAngleX = GX*elapsedTime;
+[e = _GyroAngleX * _GX _elapsedTime ]
+"484
+[; ;Le_Jason_Project.c: 484:     GyroAngleY = -GZ*elapsedTime;
+[e = _GyroAngleY * -U _GZ _elapsedTime ]
+"486
+[; ;Le_Jason_Project.c: 486:     roll = 0.96*(GyroAngleX + accAngleX) + 0.04*accAngleX;
+[e = _roll -> + * .0.96 -> + _GyroAngleX _accAngleX `d * .0.04 -> _accAngleX `d `f ]
+"487
+[; ;Le_Jason_Project.c: 487:     pitch = 0.96*(GyroAngleY+ accAngleY) + 0.04*accAngleY;
+[e = _pitch -> + * .0.96 -> + _GyroAngleY _accAngleY `d * .0.04 -> _accAngleY `d `f ]
+"489
+[; ;Le_Jason_Project.c: 489:     sprintf(buffer," roll = %.2f \t",roll);
+[e ( _sprintf (1 , (. , &U _buffer :s 1C -> _roll `d ]
+"490
+[; ;Le_Jason_Project.c: 490:     UART_Write_String(buffer);
+[e ( _UART_Write_String (1 &U _buffer ]
+"491
+[; ;Le_Jason_Project.c: 491:     sprintf(buffer," pitch = %.2f \t",pitch);
+[e ( _sprintf (1 , (. , &U _buffer :s 2C -> _pitch `d ]
+"492
+[; ;Le_Jason_Project.c: 492:     UART_Write_String(buffer);
+[e ( _UART_Write_String (1 &U _buffer ]
+"493
+[; ;Le_Jason_Project.c: 493:     sprintf(buffer," elapsedTime = %.2f \t",AX);
+[e ( _sprintf (1 , (. , &U _buffer :s 3C -> _AX `d ]
+"494
+[; ;Le_Jason_Project.c: 494:     UART_Write_String(buffer);
+[e ( _UART_Write_String (1 &U _buffer ]
+"495
+[; ;Le_Jason_Project.c: 495:     sprintf(buffer," GyroAngleX = %.2f \t",GyroAngleX);
+[e ( _sprintf (1 , (. , &U _buffer :s 4C -> _GyroAngleX `d ]
+"496
+[; ;Le_Jason_Project.c: 496:     UART_Write_String(buffer);
+[e ( _UART_Write_String (1 &U _buffer ]
+"497
+[; ;Le_Jason_Project.c: 497:     sprintf(buffer," GyroAngleY = %.2f \t",GyroAngleY);
+[e ( _sprintf (1 , (. , &U _buffer :s 5C -> _GyroAngleY `d ]
+"498
+[; ;Le_Jason_Project.c: 498:     UART_Write_String(buffer);
+[e ( _UART_Write_String (1 &U _buffer ]
+"499
+[; ;Le_Jason_Project.c: 499:     sprintf(buffer," accAngleX = %.2f \t",accAngleX);
+[e ( _sprintf (1 , (. , &U _buffer :s 6C -> _accAngleX `d ]
+"500
+[; ;Le_Jason_Project.c: 500:     UART_Write_String(buffer);
+[e ( _UART_Write_String (1 &U _buffer ]
+"501
+[; ;Le_Jason_Project.c: 501:     sprintf(buffer," accAngleY = %.2f \r\n",accAngleY);
+[e ( _sprintf (1 , (. , &U _buffer :s 7C -> _accAngleY `d ]
+"502
+[; ;Le_Jason_Project.c: 502:     UART_Write_String(buffer);
+[e ( _UART_Write_String (1 &U _buffer ]
+"504
+[; ;Le_Jason_Project.c: 504:     Servo1(90.0-roll);
+[e ( _Servo1 (1 -> - .90.0 -> _roll `d `ui ]
+"505
+[; ;Le_Jason_Project.c: 505:     Servo2(90.0-pitch);
+[e ( _Servo2 (1 -> - .90.0 -> _pitch `d `ui ]
+"507
+[; ;Le_Jason_Project.c: 507:     return;
+[e $UE 908  ]
+"508
+[; ;Le_Jason_Project.c: 508: }
+[e :UE 908 ]
+}
+"510
+[; ;Le_Jason_Project.c: 510: void UART_Write(unsigned char data){
+[v _UART_Write `(v ~T0 @X0 1 ef1`uc ]
+{
+[e :U _UART_Write ]
+[v _data `uc ~T0 @X0 1 r1 ]
+[f ]
+"511
+[; ;Le_Jason_Project.c: 511:     while(PIR1bits.TX1IF == 0){
+[e $U 910  ]
+[e :U 911 ]
+{
+"512
+[; ;Le_Jason_Project.c: 512:         }
+}
+[e :U 910 ]
+"511
+[; ;Le_Jason_Project.c: 511:     while(PIR1bits.TX1IF == 0){
+[e $ == -> . . _PIR1bits 0 4 `i -> 0 `i 911  ]
+[e :U 912 ]
+"513
+[; ;Le_Jason_Project.c: 513:     TXREG1 = data;
+[e = _TXREG1 _data ]
+"514
+[; ;Le_Jason_Project.c: 514: }
+[e :UE 909 ]
+}
+"516
+[; ;Le_Jason_Project.c: 516: void UART_Write_String(char* buf){
+[v _UART_Write_String `(v ~T0 @X0 1 ef1`*uc ]
+{
+[e :U _UART_Write_String ]
+[v _buf `*uc ~T0 @X0 1 r1 ]
+[f ]
+"517
+[; ;Le_Jason_Project.c: 517:     int i = 0;
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+"518
+[; ;Le_Jason_Project.c: 518:     while(buf[i] != '\0')
+[e $U 914  ]
+[e :U 915 ]
+"519
+[; ;Le_Jason_Project.c: 519:         UART_Write(buf[i++]);
+[e ( _UART_Write (1 -> *U + _buf * -> ++ _i -> 1 `i `x -> -> # *U _buf `i `x `uc ]
+[e :U 914 ]
+"518
+[; ;Le_Jason_Project.c: 518:     while(buf[i] != '\0')
+[e $ != -> *U + _buf * -> _i `x -> -> # *U _buf `i `x `ui -> 0 `ui 915  ]
+[e :U 916 ]
+"520
+[; ;Le_Jason_Project.c: 520: }
+[e :UE 913 ]
+}
+[p f _sprintf 8462336 ]
+[a 7C 32 97 99 99 65 110 103 108 101 89 32 61 32 37 46 50 102 32 13 10 0 ]
+[a 1C 32 114 111 108 108 32 61 32 37 46 50 102 32 9 0 ]
+[a 2C 32 112 105 116 99 104 32 61 32 37 46 50 102 32 9 0 ]
+[a 3C 32 101 108 97 112 115 101 100 84 105 109 101 32 61 32 37 46 50 102 32 9 0 ]
+[a 5C 32 71 121 114 111 65 110 103 108 101 89 32 61 32 37 46 50 102 32 9 0 ]
+[a 4C 32 71 121 114 111 65 110 103 108 101 88 32 61 32 37 46 50 102 32 9 0 ]
+[a 6C 32 97 99 99 65 110 103 108 101 88 32 61 32 37 46 50 102 32 9 0 ]
